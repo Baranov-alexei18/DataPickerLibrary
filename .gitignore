@@ -1,0 +1,7 @@
+node_modules
+dist
+netlify.toml
+.env
+.netlify
+coverage
+*storybook.log
