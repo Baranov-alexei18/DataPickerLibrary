@@ -1,0 +1,23 @@
+$white-color: #ffffff;
+$light-color: #f8f9fa;
+$grey-light-color: #f1f1f1;
+$grey-base-color: #BBBBBB;
+$dark-grey-color: #AAAAAA;
+$primary-color: #2f80ed; 
+$error-color: #be1818;
+$dark-color: #030304;
+
+$font-family-main: 'Open sans', sans-serif;
+
+$base-border-radius: 8px;
+
+$font-size-xs: 13px;
+$font-size-sm: 14px;
+$font-size-md: 15px;
+$font-size-lg: 16px;
+
+
+@mixin fontSize($font-size, $font-weight) {
+    font-size: $font-size;
+    font-weight: $font-weight;
+}
