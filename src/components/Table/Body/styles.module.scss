@@ -1,0 +1,31 @@
+@import "../../../assets/style/variables.scss";
+
+.week {
+  @include fontSize($font-size-xs, 600);
+  width: 95%;
+  cursor: pointer;
+  text-align: center;
+}
+.day {
+  display: flex;
+  width: 33px;
+  height: 33px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.other_month {
+  color: $dark-color;
+  opacity: 40%;
+}
+.highlight{
+  cursor: pointer;
+  background-color: $grey-light-color;
+  border-radius: $base-border-radius;
+
+}
+.selected {
+  background-color: $primary-color;
+  color: $grey-light-color;
+  border-radius: $base-border-radius;
+}
