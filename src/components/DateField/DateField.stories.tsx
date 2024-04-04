@@ -16,5 +16,5 @@ const Template: StoryFn<DateFieldProps> = (args) => <DateField {...args} />;
 export const Default = Template.bind({});
 Default.args = {
   value: '',
-  onChange: (value: string) => console.log(value),
+  onChange: (value: string) => value,
 };

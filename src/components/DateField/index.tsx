@@ -1,43 +1,29 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import CalendarSVG from '@/assets/svg/Calendar.svg';
 import ClearIconSVG from '@/assets/svg/Clear.svg';
-import { Calendar } from '@/components/Calendar';
-import { getMaskForDateField } from '@/utils/DateField/mask';
-import { validateDate } from '@/utils/DateField/valideDate';
+import { formatDateToString } from '@/utils/Calendar/getFormatDate';
 
 import classes from './styles.module.scss';
 
 export interface DateFieldProps {
-    value: string;
-    onChange: (value: string) => void;
+  value: string | undefined;
+  onChange: (value: string) => void;
+  onClear: () => void;
+  onFocus: () => void;
 }
 
-export const DateField: React.FC<DateFieldProps> = ({ value, onChange }) => {
-  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
-  const [inputValue, setInputValue] = useState(value);
-
-  const handleClear = () => {
-    onChange('');
-    setInputValue('');
-    setIsCalendarOpen(false);
-  };
+export const DateField: React.FC<DateFieldProps> = ({
+  value, onChange, onClear, onFocus,
+}) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    const formattedValue = getMaskForDateField(value);
-
-    const formatInput = getMaskForDateField(value);
-    setInputValue(validateDate(formatInput));
-    onChange(formattedValue);
+    onChange(value);
   };
-  const handleInputClick = () => {
-    setIsCalendarOpen(true);
-  };
-
-  const handleDateSelect = (selectedDate: Date) => {
-    onChange(selectedDate.toISOString());
-    setIsCalendarOpen(false);
-  };
+  let dateInput;
+  if (value !== undefined) {
+    dateInput = value.length > 10 ? formatDateToString(new Date(value)) : value;
+  }
 
   return (
     <div className={classes.datefield_wrapper}>
@@ -49,26 +35,20 @@ export const DateField: React.FC<DateFieldProps> = ({ value, onChange }) => {
       <input
         type="text"
         className={classes.date_input}
-        value={inputValue}
+        value={dateInput}
         placeholder="Choose Date"
-        onClick={handleInputClick}
+        onFocus={onFocus}
         onChange={handleChange}
       />
-      {inputValue && (
+      {value && (
         <img
           className={classes.clear_icon}
           src={ClearIconSVG}
           alt="Close"
-          onClick={handleClear}
+          onClick={onClear}
           aria-hidden
         />
       )}
-      <Calendar
-        isOpen={isCalendarOpen}
-        startDate={new Date()}
-        onDateSelect={handleDateSelect}
-        onClose={() => setIsCalendarOpen(false)}
-      />
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-import { useOutsideClick } from '@/hooks/useOutsideClick';
+import { firstWeekDayType } from '@/types/index';
 
 import { Table } from '../Table';
 import { CalendarHeader } from './Header';
@@ -8,19 +8,26 @@ import classes from './styles.module.scss';
 
 interface CalendarProps {
   isOpen: boolean;
-  startDate: Date;
-  onDateSelect: (date: string) => void;
-  onClose: () => void;
+  startDate: Date | string;
+  firstWeekDay: firstWeekDayType | undefined;
+  onDateSelect: (date: Date) => void | undefined;
+  setCurrentDate: (date: Date) => void;
 }
 
 export const Calendar: React.FC<CalendarProps> = ({
-  isOpen, startDate, onClose, onDateSelect,
+  isOpen, startDate, firstWeekDay, onDateSelect, setCurrentDate,
 }) => {
   const calendarRef = useRef(null);
 
-  useOutsideClick(calendarRef, onClose, isOpen);
+  const handlePrevMonthClick = () => {
+    const date = new Date(new Date(startDate).getFullYear(), new Date(startDate).getMonth() - 1, 1);
+    setCurrentDate(date);
+  };
 
-  const [selectedDate, setSelectedDate] = React.useState<Date>(startDate);
+  const handleNextMonthClick = () => {
+    const date = new Date(new Date(startDate).getFullYear(), new Date(startDate).getMonth() + 1, 1);
+    setCurrentDate(date);
+  };
 
   if (!isOpen) return null;
 
@@ -30,8 +37,16 @@ export const Calendar: React.FC<CalendarProps> = ({
       ref={calendarRef}
       aria-hidden
     >
-      <CalendarHeader currentDate={selectedDate} />
-      <Table startDate={selectedDate} firstWeekDay="Mo" />
+      <CalendarHeader
+        currentDate={new Date(startDate)}
+        onPrevMonthClick={handlePrevMonthClick}
+        onNextMonthClick={handleNextMonthClick}
+      />
+      <Table
+        startDate={new Date(startDate)}
+        firstWeekDay={firstWeekDay}
+        onDateSelect={onDateSelect}
+      />
     </div>
 
   );

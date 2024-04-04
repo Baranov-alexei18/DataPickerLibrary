@@ -5,7 +5,7 @@ import classes from './styles.module.scss';
 interface HeaderTableProps {
     firstWeekDay: string;
 }
-export const TableHeader: FC<HeaderTableProps> = ({ firstWeekDay = 'Mo' }) => {
+export const TableHeader: FC<HeaderTableProps> = ({ firstWeekDay }) => {
   let weekDays = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
   if (firstWeekDay === 'Su') {
     weekDays = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
