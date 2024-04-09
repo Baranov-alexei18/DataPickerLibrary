@@ -1,35 +1,29 @@
-import React, { useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 
-import { firstWeekDayType } from '@/types/index';
+import { CalendarType } from '@/types/calendar';
+import { getDataFromContext } from '@/utils/getDataFromContext';
 
-import { Table } from '../Table';
+import { CalendarContext } from '../DatePicker';
+import { CalendarBody } from './Body';
 import { CalendarHeader } from './Header';
 import classes from './styles.module.scss';
+import { CalendarProps } from './type';
 
-interface CalendarProps {
-  isOpen: boolean;
-  startDate: Date | string;
-  firstWeekDay: firstWeekDayType | undefined;
-  onDateSelect: (date: Date) => void | undefined;
-  setCurrentDate: (date: Date) => void;
-}
-
-export const Calendar: React.FC<CalendarProps> = ({
-  isOpen, startDate, firstWeekDay, onDateSelect, setCurrentDate,
-}) => {
+export const Calendar: React.FC<Partial<CalendarProps>> = ({
+  isOpen,
+  selectDate,
+}: Partial<CalendarProps>) => {
   const calendarRef = useRef(null);
 
-  const handlePrevMonthClick = () => {
-    const date = new Date(new Date(startDate).getFullYear(), new Date(startDate).getMonth() - 1, 1);
-    setCurrentDate(date);
-  };
+  const calendarContext = useContext(CalendarContext);
 
-  const handleNextMonthClick = () => {
-    const date = new Date(new Date(startDate).getFullYear(), new Date(startDate).getMonth() + 1, 1);
-    setCurrentDate(date);
-  };
+  const { state } = getDataFromContext(calendarContext) as CalendarType;
 
   if (!isOpen) return null;
+
+  const selectedDate = (date: Date) => {
+    selectDate(date);
+  };
 
   return (
     <div
@@ -37,15 +31,10 @@ export const Calendar: React.FC<CalendarProps> = ({
       ref={calendarRef}
       aria-hidden
     >
-      <CalendarHeader
-        currentDate={new Date(startDate)}
-        onPrevMonthClick={handlePrevMonthClick}
-        onNextMonthClick={handleNextMonthClick}
-      />
-      <Table
-        startDate={new Date(startDate)}
-        firstWeekDay={firstWeekDay}
-        onDateSelect={onDateSelect}
+      <CalendarHeader />
+      <CalendarBody
+        mode={state.mode}
+        selectDate={selectedDate}
       />
     </div>
 

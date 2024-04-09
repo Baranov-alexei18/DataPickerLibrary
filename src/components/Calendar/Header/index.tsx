@@ -1,47 +1,72 @@
-import React, { FC } from 'react';
+import React, { ReactNode, useContext } from 'react';
 
 import Next from '@/assets/svg/Next.svg';
 import Prev from '@/assets/svg/Prev.svg';
-import { months } from '@/constants';
+import { CalendarContext } from '@/components/DatePicker';
+import { CalendarType } from '@/types/calendar';
+import { getDataFromContext } from '@/utils/getDataFromContext';
 
 import classes from './styles.module.scss';
 
-interface HeaderCalendarProps {
-    currentDate: Date;
-    onPrevMonthClick: () => void;
-    onNextMonthClick: () => void;
-}
-export const CalendarHeader: FC<HeaderCalendarProps> = (
-  { currentDate, onPrevMonthClick, onNextMonthClick },
-) => {
-  const currentMonth = currentDate.getMonth();
-  const currentYear = currentDate.getFullYear();
+export const CalendarHeader = () => {
+  const calendarContext = useContext(CalendarContext);
 
-  const handlePrevMonthClick = () => {
-    onPrevMonthClick();
-  };
+  const { state, functions } = getDataFromContext(calendarContext) as CalendarType;
 
-  const handleNextMonthClick = () => {
-    onNextMonthClick();
-  };
+  let labelHeader: ReactNode;
+
+  switch (state.mode) {
+    case 'days': {
+      labelHeader = (
+        <div aria-hidden onClick={() => functions.setMode('monthes')}>
+          {state.monthesNames[state.selectedMonth.monthIndex].month}
+          {' '}
+          {state.selectedYear}
+        </div>
+      );
+      break;
+    }
+    case 'monthes': {
+      labelHeader = (
+        <div aria-hidden onClick={() => functions.setMode('years')}>
+          {state.selectedYear}
+        </div>
+      );
+      break;
+    }
+    case 'years': {
+      labelHeader = (
+        <div>
+          {state.selectedYearsInterval[0]}
+          -
+          {state.selectedYearsInterval[state.selectedYearsInterval.length - 1]}
+        </div>
+      );
+      break;
+    }
+    default: {
+      labelHeader = null;
+      break;
+    }
+  }
 
   return (
     <div className={classes.wrapper}>
       <img
         src={Prev}
-        alt="Close"
-        onClick={handlePrevMonthClick}
+        alt="toLeft"
+        title="Prev"
+        onClick={() => functions.onClickArrow('left')}
         aria-hidden
       />
-      <span className={classes.info}>
-        {months[currentMonth]}
-        {' '}
-        {currentYear}
+      <span>
+        {labelHeader}
       </span>
       <img
         src={Next}
-        alt="Close"
-        onClick={handleNextMonthClick}
+        alt="toRight"
+        title="Next"
+        onClick={() => functions.onClickArrow('right')}
         aria-hidden
       />
     </div>

@@ -3,6 +3,7 @@ $light-color: #f8f9fa;
 $grey-light-color: #f1f1f1;
 $grey-base-color: #BBBBBB;
 $dark-grey-color: #AAAAAA;
+$primary-light-color: #adcef8; 
 $primary-color: #2f80ed; 
 $error-color: #be1818;
 $dark-color: #030304;
@@ -16,8 +17,15 @@ $font-size-sm: 14px;
 $font-size-md: 15px;
 $font-size-lg: 16px;
 
+$size-base-cell: 32px;
 
 @mixin fontSize($font-size, $font-weight) {
     font-size: $font-size;
     font-weight: $font-weight;
+}
+
+@mixin flex-center() {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

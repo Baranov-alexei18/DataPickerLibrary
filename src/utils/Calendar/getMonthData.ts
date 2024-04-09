@@ -7,11 +7,10 @@ const daysInMonth = (date: Date): number => {
 export const getMonthData = (date: Date, startDay: string): Date[][] => {
   const monthData: Date[][] = [];
   const days = daysInMonth(date);
-  const firstDay = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
   const prevMonthDays = daysInMonth(new Date(date.getFullYear(), date.getMonth() - 1));
+  const firstDay = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
   let day = 1;
   let prevMonthDay = 0;
-
   let startIndex = 0;
 
   if (startDay === 'Su') {

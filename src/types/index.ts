@@ -1,1 +1,1 @@
-export type firstWeekDayType = 'Su' | 'Mo';
+export type firstWeekDayType = 2 | 1;

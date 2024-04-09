@@ -35,15 +35,6 @@ export default {
     }),
     resolve(),
     svgr(),
-    // scss({
-    //   output: 'dist/bundle.css',
-    //   failOnError: true,
-    //   modules: true,
-    //   includePaths: [path.resolve(__dirname, './src')],
-    //   processor: (css) => require('postcss')([require('cssnano')()])
-    //     .process(css)
-    //     .then((result) => result.css),
-    // }),
     alias({
       entries: [
         { find: '@', replacement: path.resolve(__dirname, 'src') },

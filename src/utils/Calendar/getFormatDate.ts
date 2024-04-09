@@ -12,8 +12,8 @@ export const formatDateToString = (dateString: Date) => {
   return `${formattedDay}/${formattedMonth}/${year}`;
 };
 
-export const formatStringToDate = (dateString: string) => {
-  if (!dateString) return '';
+export const formatStringToDate = (dateString: string):Date => {
+  if (!dateString) return new Date();
   const [day, month, year] = dateString.split('/');
 
   return new Date(parseFloat(year), parseFloat(month) - 1, parseFloat(day));

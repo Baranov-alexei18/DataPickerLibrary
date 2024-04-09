@@ -1,17 +1,14 @@
 import type { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
 
-import { DatePicker, DatePickerProps } from '.';
+import { DatePicker } from '.';
+import { DatePickerProps } from './type';
 
 export default {
   title: 'Components/DatePicker',
   component: DatePicker,
   argTypes: {
     value: { control: 'text' },
-    firstWeekDay: {
-      options: ['Mo', 'Su'],
-      control: { type: 'radio' },
-    },
   },
 } as Meta;
 
@@ -21,5 +18,9 @@ export const Default = Template.bind({});
 Default.args = {
   value: '',
   onChange: () => { },
-  firstWeekDay: 'Su',
+  isFirstWeekDayMonday: true,
+  minDate: new Date(2000, 4, 4),
+  maxDate: new Date(2024, 10, 11),
+  holiday: false,
+  holidayColor: '#a0f0a0',
 };

@@ -5,16 +5,10 @@ import ClearIconSVG from '@/assets/svg/Clear.svg';
 import { formatDateToString } from '@/utils/Calendar/getFormatDate';
 
 import classes from './styles.module.scss';
-
-export interface DateFieldProps {
-  value: string | undefined;
-  onChange: (value: string) => void;
-  onClear: () => void;
-  onFocus: () => void;
-}
+import { DateFieldProps } from './type';
 
 export const DateField: React.FC<DateFieldProps> = ({
-  value, onChange, onClear, onFocus,
+  value, className, onChange, onClear, onFocus,
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -26,7 +20,7 @@ export const DateField: React.FC<DateFieldProps> = ({
   }
 
   return (
-    <div className={classes.datefield_wrapper}>
+    <div className={`${classes.datefield_wrapper} ${className}`}>
       <img
         className={classes.calendar_icon}
         src={CalendarSVG}

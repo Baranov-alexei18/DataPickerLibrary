@@ -1,0 +1,89 @@
+@import '../../../assets/style/variables.scss';
+
+.week_names {
+    @include fontSize($font-size-sm, 700);
+    height: $size-base-cell;
+    display: grid;
+    text-align: center;
+    align-items: center;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px 1px;
+}
+
+.table_days {
+    @include fontSize($font-size-xs, 600);
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: 1fr;
+    gap: 1px 1px;
+}
+
+.calendar_day {
+    @include flex-center;
+    height: $size-base-cell;
+    width: $size-base-cell;
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    &:hover {
+        background-color: $primary-light-color;
+        color: $light-color
+    }
+}
+
+.additional_day {
+    cursor: pointer;
+    color: $grey-base-color;
+}
+
+.disabled_day {
+    cursor:default;
+    color: $dark-color;
+    opacity: 0.3;
+
+    &:hover {
+        background-color: inherit;
+        color: inherit;
+
+    }
+}
+
+.calendar_today {
+    background-color: $grey-light-color;
+}
+
+.calendar_item {
+    @include flex-center;
+    cursor: pointer;
+    padding: 16px 0px;
+    border-radius: 8px;
+
+    &:hover {
+        background-color: $primary-light-color;
+    }
+}
+
+.select_day {
+    color: $light-color;
+    background-color: $primary-color;
+
+    &:hover {
+        background-color: $primary-light-color;
+    }
+}
+
+.calendar_year {
+    @include fontSize($font-size-sm, 600);
+    display: grid;
+    text-align: center;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 1px 1px;
+}
+
+.calendar_unchoosable_year {
+    font-weight: 300;
+    padding: 16px 20px;
+    color: $grey-base-color;
+}

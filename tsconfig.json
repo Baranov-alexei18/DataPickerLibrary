@@ -14,7 +14,7 @@
     },
     "types": ["@storybook/react", "@svgr/webpack"]
   },
-  "include": [
-    "src/**/*"
-  ]
+  "exclude": [
+    "node_modules",
+  ], 
 }

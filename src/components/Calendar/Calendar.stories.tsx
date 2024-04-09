@@ -10,9 +10,9 @@ export default {
 
 const Template: StoryFn = (args) => (
   <Calendar
-    isOpen={false}
-    startDate=""
-    firstWeekDay={undefined}
+    isOpen
+    startDate={new Date()}
+    firstWeekDay={2}
     onDateSelect={() => { }}
     setCurrentDate={() => { }}
     {...args}
@@ -22,7 +22,7 @@ const Template: StoryFn = (args) => (
 export const Default = Template.bind({
   startDate: new Date(),
   isOpen: true,
-  firstWeekDay: 'Mo',
+  firstWeekDay: 1,
   onDateSelect: () => { },
   onClose: () => { },
   setCurrentDate: () => { },
