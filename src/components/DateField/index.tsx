@@ -8,13 +8,15 @@ import classes from './styles.module.scss';
 import { DateFieldProps } from './type';
 
 export const DateField: React.FC<DateFieldProps> = ({
-  value, className, onChange, onClear, onFocus,
+  value, className, onChange, onClear, onFocus, closeCalendar,
 }) => {
+  let dateInput;
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    onChange(value);
+    onChange!(value);
   };
-  let dateInput;
+
   if (value !== undefined) {
     dateInput = value.length > 10 ? formatDateToString(new Date(value)) : value;
   }
@@ -33,6 +35,7 @@ export const DateField: React.FC<DateFieldProps> = ({
         placeholder="Choose Date"
         onFocus={onFocus}
         onChange={handleChange}
+        onDoubleClick={closeCalendar}
       />
       {value && (
         <img

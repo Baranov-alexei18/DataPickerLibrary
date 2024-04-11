@@ -1,44 +1,20 @@
+@import "../../assets/style/variables.scss";
+
 .Button {
-  display: inline-block;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  width: calc(100% + 8px);
+  color: $dark-color;
+  background-color: inherit;
+  font-size: $font-size-md;
+  padding: 8px 0 4px 0;
+  margin: 0 -8px -4px  -4px;
+  border-bottom-left-radius: $base-border-radius;
+  border-bottom-right-radius: $base-border-radius;
+  border: none;
+  border-color: $grey-light-color;
+  border-top: 1px solid $grey-base-color;
 
-  &.primary {
-    color: white;
-    background-color: blue;
-    border: 1px solid red;
-  }
-
-  &.secondary {
-    color: blue;
-    background-color: transparent;
-    border: 1px solid blue;
-  }
-
-  &:hover {
-    background-color: rgba(0, 0, 255, 0.2);
-  }
-
-  &.disabled {
-    opacity: 0.5;
-    pointer-events: none;
-  }
-
-  &.small {
-    padding: 8px 16px;
-    font-size: 14px;
-  }
-
-  &.medium {
-    padding: 12px 24px;
-    font-size: 16px;
-  }
-
-  &.large {
-    padding: 16px 32px;
-    font-size: 18px;
+  &:hover{
+    background-color: $light-color;
   }
 }

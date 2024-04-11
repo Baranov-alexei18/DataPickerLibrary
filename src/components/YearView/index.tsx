@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 
-import { CalendarContext } from '@/components/DatePicker';
+import { CalendarContext } from '@/hoc/withCalendarContext';
 import { CalendarType } from '@/types/calendar';
 import { getDataFromContext } from '@/utils/getDataFromContext';
 

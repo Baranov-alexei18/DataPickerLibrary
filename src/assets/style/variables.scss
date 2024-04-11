@@ -3,10 +3,12 @@ $light-color: #f8f9fa;
 $grey-light-color: #f1f1f1;
 $grey-base-color: #BBBBBB;
 $dark-grey-color: #AAAAAA;
-$primary-light-color: #adcef8; 
+$primary-light-color: #EAF2FD; 
+$primary-hover-color: #81b5fa; 
 $primary-color: #2f80ed; 
 $error-color: #be1818;
 $dark-color: #030304;
+$orange-color: #edb620;
 
 $font-family-main: 'Open sans', sans-serif;
 
@@ -28,4 +30,10 @@ $size-base-cell: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+@mixin flex-space-between() {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }

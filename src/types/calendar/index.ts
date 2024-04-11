@@ -7,6 +7,7 @@ export type CalendarType = {
 }
 
 export type CalendarContextType = {
+    isFirstWeekDayMonday?: boolean,
     state: CalendarStateType,
     functions: CalendarFunctionsType,
     minDate: Date;

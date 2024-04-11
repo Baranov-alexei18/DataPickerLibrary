@@ -1,4 +1,4 @@
-@import '../../../assets/style/variables.scss';
+@import "../../assets/style/variables.scss";
 
 .week_names {
     @include fontSize($font-size-sm, 700);
@@ -7,7 +7,6 @@
     text-align: center;
     align-items: center;
     grid-template-columns: repeat(7, 1fr);
-    gap: 1px 1px;
 }
 
 .table_days {
@@ -15,19 +14,18 @@
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: 1fr;
-    gap: 1px 1px;
 }
 
 .calendar_day {
     @include flex-center;
+    position: relative;
     height: $size-base-cell;
-    width: $size-base-cell;
-    border-radius: 8px;
+    border-radius: $base-border-radius;
 
     cursor: pointer;
 
     &:hover {
-        background-color: $primary-light-color;
+        background-color: $primary-hover-color !important;
         color: $light-color
     }
 }
@@ -41,9 +39,10 @@
     cursor:default;
     color: $dark-color;
     opacity: 0.3;
-
+    padding: 0;
+    margin: 0;
     &:hover {
-        background-color: inherit;
+        background-color: $primary-hover-color;
         color: inherit;
 
     }
@@ -60,7 +59,7 @@
     border-radius: 8px;
 
     &:hover {
-        background-color: $primary-light-color;
+        background-color: $primary-hover-color;
     }
 }
 
@@ -69,7 +68,7 @@
     background-color: $primary-color;
 
     &:hover {
-        background-color: $primary-light-color;
+        background-color: $primary-hover-color;
     }
 }
 
@@ -79,11 +78,37 @@
     text-align: center;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(4, 1fr);
-    gap: 1px 1px;
 }
 
 .calendar_unchoosable_year {
     font-weight: 300;
     padding: 16px 20px;
     color: $grey-base-color;
+}
+
+.start_range {
+    border-top-right-radius: 0; 
+    border-bottom-right-radius: 0;
+    background-color: $primary-color !important;
+    color: $light-color;
+}
+.end_range {
+    border-top-left-radius: 0; 
+    border-bottom-left-radius: 0;
+    background-color: $primary-color !important;
+    color: $light-color;
+}
+.selected_range{
+    border-radius: 0;
+    background-color: $primary-light-color !important;
+    color: $primary-color;
+}
+.has_todolist{
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 6px;
+    height: 6px;
+    background-color: $orange-color; 
+    border-radius: 50%;
 }

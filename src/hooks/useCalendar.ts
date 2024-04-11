@@ -9,7 +9,7 @@ import {
   getWeekDaysNames,
 } from '@/utils/Calendar';
 
-interface UseCalendarParams {
+type UseCalendarParams = {
   locale?: string;
   selectedDate: Date;
   firstWeekDayNumber?: number;

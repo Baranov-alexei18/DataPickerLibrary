@@ -3,7 +3,7 @@ export const getHolidayDay = async (year: number) => {
   const options = {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': '36bf98266amsh7726bba07181142p12eb8ajsn9af48f4d5f24',
+      'X-RapidAPI-Key': process.env.REACT_HOLIDAY_API!,
       'X-RapidAPI-Host': 'public-holiday.p.rapidapi.com',
     },
   };

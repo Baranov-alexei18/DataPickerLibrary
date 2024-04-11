@@ -1,42 +1,76 @@
-import React, { useContext, useRef } from 'react';
+import React, { memo, useContext } from 'react';
 
-import { CalendarType } from '@/types/calendar';
-import { getDataFromContext } from '@/utils/getDataFromContext';
+import { CalendarContext } from '@/hoc/withCalendarContext';
+import { withHolidaysConditional } from '@/hoc/withHoliday';
+import { withToDoList } from '@/hoc/withTodoList';
+import { CalendarContextType } from '@/types/calendar';
 
-import { CalendarContext } from '../DatePicker';
-import { CalendarBody } from './Body';
+import { Button } from '../Button';
+import { DayView } from '../DayView';
+import { MonthView } from '../MonthView';
+import { YearView } from '../YearView';
 import { CalendarHeader } from './Header';
 import classes from './styles.module.scss';
 import { CalendarProps } from './type';
 
-export const Calendar: React.FC<Partial<CalendarProps>> = ({
+const Calendar: React.FC<Partial<CalendarProps>> = memo(({
   isOpen,
+  selectedRange,
+  clearDate,
   selectDate,
+  selectRange,
+  openTodo,
 }: Partial<CalendarProps>) => {
-  const calendarRef = useRef(null);
-
   const calendarContext = useContext(CalendarContext);
 
-  const { state } = getDataFromContext(calendarContext) as CalendarType;
+  const { state, holiday } = calendarContext as CalendarContextType;
 
   if (!isOpen) return null;
 
-  const selectedDate = (date: Date) => {
-    selectDate(date);
+  const DayViewWithHolidays = withHolidaysConditional(DayView, state.selectedYear, holiday);
+
+  const selectedDate = (date: Date | Date[]) => {
+    if (selectDate) {
+      selectDate(date as Date);
+    } else if (selectRange) {
+      selectRange(date as Date);
+    }
   };
 
+  let bodyView;
+  switch (state.mode) {
+    case 'days': {
+      bodyView = (
+        <DayViewWithHolidays
+          selectDate={selectedDate}
+          selectedRange={selectedRange}
+          openTodo={openTodo}
+        />
+      );
+      break;
+    }
+    case 'monthes': {
+      bodyView = <MonthView />;
+      break;
+    }
+    case 'years': {
+      bodyView = <YearView />;
+      break;
+    }
+    default: {
+      bodyView = null;
+      break;
+    }
+  }
+
   return (
-    <div
-      className={classes.calendar}
-      ref={calendarRef}
-      aria-hidden
-    >
+    <div className={classes.calendar} aria-hidden>
       <CalendarHeader />
-      <CalendarBody
-        mode={state.mode}
-        selectDate={selectedDate}
-      />
+      {bodyView}
+      <Button onClick={clearDate}>Clear</Button>
     </div>
 
   );
-};
+});
+
+export default withToDoList(Calendar);

@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
 
-import { DatePicker } from '.';
+import DatePicker from '.';
 import { DatePickerProps } from './type';
 
 export default {

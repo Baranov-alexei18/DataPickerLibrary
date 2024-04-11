@@ -1,5 +1,3 @@
-/* eslint-disable global-require */
-/* eslint-disable @typescript-eslint/no-var-requires */
 import alias from '@rollup/plugin-alias';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
@@ -9,6 +7,7 @@ import svgr from '@svgr/rollup';
 import path from 'path';
 import babel from 'rollup-plugin-babel'; // Добавленный плагин
 import del from 'rollup-plugin-delete';
+import dotenv from 'rollup-plugin-dotenv';
 import postcss from 'rollup-plugin-postcss';
 import styles from 'rollup-plugin-styles';
 import { terser } from 'rollup-plugin-terser';
@@ -22,6 +21,7 @@ export default {
   },
   plugins: [
     postcss({
+      alias: { find: '@', replacement: path.resolve(__dirname, 'src') },
       extract: false,
       modules: true,
       use: ['sass'],
@@ -52,5 +52,6 @@ export default {
     }),
     typescript(),
     commonjs(),
+    dotenv,
   ],
 };

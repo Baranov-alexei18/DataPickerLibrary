@@ -1,11 +1,12 @@
 import React, {
-  createContext, useMemo, useState,
+  useContext, useEffect, useRef, useState,
 } from 'react';
 
-import { Calendar } from '@/components/Calendar';
+import Calendar from '@/components/Calendar';
 import { DateField } from '@/components/DateField';
-import { useCalendar } from '@/hooks/useCalendar';
-import { CalendarContextType } from '@/types/calendar';
+import { CalendarContext, withCalendarContext } from '@/hoc/withCalendarContext';
+import { useOutsideClick } from '@/hooks/useOutsideClick';
+import { CalendarType } from '@/types/calendar';
 import { formatDateToString, formatStringToDate } from '@/utils/Calendar/getFormatDate';
 import { getErrorMessage } from '@/utils/DateField/getMessageError';
 import { getMaskForDateField } from '@/utils/DateField/mask';
@@ -14,35 +15,36 @@ import { validateDate } from '@/utils/DateField/validateDate';
 import classes from './styles.module.scss';
 import { DatePickerProps } from './type';
 
-export const CalendarContext = createContext<CalendarContextType | null>(null);
-
-export const DatePicker: React.FC<Partial<DatePickerProps>> = (
+const DatePicker: React.FC<Partial<DatePickerProps>> = (
   {
     value,
-    isFirstWeekDayMonday = true,
     onChange,
     minDate = new Date(2000, 1, 1),
     maxDate = new Date(2200, 1, 1),
-    holiday = false,
-    holidayColor,
   },
 ) => {
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const [inputValue, setInputValue] = useState(value);
-  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [error, setError] = useState<string>('');
+  const calendarRef = useRef(null);
 
-  const { functions, state } = useCalendar({
-    selectedDate: new Date(),
-    firstWeekDayNumber: isFirstWeekDayMonday ? 2 : 1,
-  });
+  const { state, functions } = useContext(CalendarContext) as CalendarType;
 
-  const contextValue = useMemo(() => ({
-    functions, state, minDate, maxDate, holiday, holidayColor,
-  }), [functions, state]);
+  useOutsideClick(calendarRef, () => toggleClose(state.mode), isCalendarOpen);
+
+  useEffect(() => {
+    if (state.mode === 'days' && error.length > 1) {
+      setIsCalendarOpen(false);
+    }
+  }, [state.mode, error]);
+
+  const toggleClose = (mode: 'days' | 'monthes' | 'years') => {
+    if (mode === 'days' && error.length > 1) {
+      setIsCalendarOpen(false);
+    }
+  };
 
   const updateCalendarState = (date: Date) => {
-    functions.setSelectedDay(date);
     functions.setSelectedMonthByIndex(date.getMonth(), date.getFullYear());
     functions.setSelectedYear(date.getFullYear());
   };
@@ -51,31 +53,26 @@ export const DatePicker: React.FC<Partial<DatePickerProps>> = (
     onChange!('');
     setInputValue('');
     setError('');
-    setSelectedDate(new Date());
     setIsCalendarOpen(false);
-    updateCalendarState(new Date());
   };
 
-  const handleChange = (value: string) => {
-    const formattedVal = getMaskForDateField(value);
+  const handleChange = (values: string) => {
+    const formattedVal = getMaskForDateField(values);
     setInputValue(validateDate(formattedVal));
 
-    const error = getErrorMessage(formatStringToDate(validateDate(formattedVal)), maxDate, minDate);
+    const err = getErrorMessage(formatStringToDate(validateDate(formattedVal)), maxDate, minDate);
 
-    if (value.length === 10) {
-      if (error) {
-        setError(error);
+    if (values.length === 10) {
+      if (err) {
+        setError(err);
         return;
       }
       const date = formatStringToDate(validateDate(formattedVal));
-      setSelectedDate(date);
       updateCalendarState(date);
       onChange!(formattedVal);
     } else {
       setError('');
     }
-
-    setIsCalendarOpen(false);
   };
 
   const handleInputClick = () => {
@@ -85,28 +82,26 @@ export const DatePicker: React.FC<Partial<DatePickerProps>> = (
   const handleDateSelect = (selectedDate: Date) => {
     const isoString = formatDateToString(selectedDate);
     setInputValue(isoString);
-    setSelectedDate(selectedDate);
     onChange!(isoString);
-    setIsCalendarOpen(false);
   };
 
   return (
-    <div className={classes.datepicker_wrapper}>
-      <CalendarContext.Provider value={contextValue}>
-        <DateField
-          value={inputValue}
-          className={error && classes.error}
-          onChange={handleChange}
-          onClear={handleClear}
-          onFocus={handleInputClick}
-        />
-        {error && <div className={classes.error_message}>{error}</div>}
-        <Calendar
-          isOpen={isCalendarOpen}
-          selectedDate={selectedDate}
-          selectDate={handleDateSelect}
-        />
-      </CalendarContext.Provider>
+    <div ref={calendarRef} className={classes.datepicker_wrapper}>
+      <DateField
+        value={inputValue}
+        className={error && classes.error}
+        onChange={handleChange}
+        onClear={handleClear}
+        onFocus={handleInputClick}
+      />
+      {error && <div className={classes.error_message}>{error}</div>}
+      <Calendar
+        isOpen={isCalendarOpen}
+        selectDate={handleDateSelect}
+        clearDate={handleClear}
+      />
     </div>
   );
 };
+
+export default withCalendarContext(DatePicker);

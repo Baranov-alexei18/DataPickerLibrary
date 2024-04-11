@@ -4,7 +4,7 @@ import { Calendar } from '@/components/Calendar';
 
 // import { RangePicker } from './RangePicker';
 
-const withCalendarWrapper = (WrappedComponent: any) => {
+const withCalendarWrapper = (WrappedComponent) => {
   const [selected, setSelected] = useState(null);
 
   const handleSelect = (value: React.SetStateAction<null>) => {

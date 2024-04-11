@@ -1,24 +1,26 @@
-import React, { ReactNode, useContext } from 'react';
+import React, { ReactNode, useCallback, useContext } from 'react';
 
 import Next from '@/assets/svg/Next.svg';
 import Prev from '@/assets/svg/Prev.svg';
-import { CalendarContext } from '@/components/DatePicker';
+import { CalendarContext } from '@/hoc/withCalendarContext';
 import { CalendarType } from '@/types/calendar';
 import { getDataFromContext } from '@/utils/getDataFromContext';
 
 import classes from './styles.module.scss';
 
 export const CalendarHeader = () => {
+  let labelHeader: ReactNode;
   const calendarContext = useContext(CalendarContext);
-
   const { state, functions } = getDataFromContext(calendarContext) as CalendarType;
 
-  let labelHeader: ReactNode;
+  const setMode = (mode: 'days'|'monthes'|'years') => () => functions.setMode(mode);
+
+  const handleArrow = (arrow: 'left' | 'right') => useCallback(() => functions.onClickArrow(arrow), [functions.onClickArrow]);
 
   switch (state.mode) {
     case 'days': {
       labelHeader = (
-        <div aria-hidden onClick={() => functions.setMode('monthes')}>
+        <div aria-hidden onClick={setMode('monthes')}>
           {state.monthesNames[state.selectedMonth.monthIndex].month}
           {' '}
           {state.selectedYear}
@@ -28,7 +30,7 @@ export const CalendarHeader = () => {
     }
     case 'monthes': {
       labelHeader = (
-        <div aria-hidden onClick={() => functions.setMode('years')}>
+        <div aria-hidden onClick={setMode('years')}>
           {state.selectedYear}
         </div>
       );
@@ -56,7 +58,7 @@ export const CalendarHeader = () => {
         src={Prev}
         alt="toLeft"
         title="Prev"
-        onClick={() => functions.onClickArrow('left')}
+        onClick={handleArrow('left')}
         aria-hidden
       />
       <span>
@@ -66,7 +68,7 @@ export const CalendarHeader = () => {
         src={Next}
         alt="toRight"
         title="Next"
-        onClick={() => functions.onClickArrow('right')}
+        onClick={handleArrow('right')}
         aria-hidden
       />
     </div>
