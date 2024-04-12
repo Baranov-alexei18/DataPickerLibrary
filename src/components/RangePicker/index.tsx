@@ -23,7 +23,7 @@ const RangePicker: React.FC<Partial<DatePickerProps>> = () => {
 
     if (!endRange && date > startRange) {
       setSelectedRange([startRange, date]);
-    } else if (!endRange && date <= startRange) {
+    } else if (!endRange && date < startRange) {
       setSelectedRange([date, startRange]);
     } else {
       setSelectedRange([date, null]);
@@ -65,7 +65,6 @@ const RangePicker: React.FC<Partial<DatePickerProps>> = () => {
       />
       <Calendar
         isOpen={isCalendarOpen}
-        closeCalendar={closeCalendar}
         selectedRange={selectedRange}
         selectRange={handleSelectRange}
         clearDate={handleClearRange}

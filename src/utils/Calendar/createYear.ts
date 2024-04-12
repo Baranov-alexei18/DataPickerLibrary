@@ -1,3 +1,5 @@
+import { MONTHES_COUNT } from '@/constants';
+
 import { createDate } from './createDate';
 import { createMonth } from './createMonth';
 
@@ -10,7 +12,6 @@ interface CreateYearParams {
 export const createYear = (params?: CreateYearParams) => {
   const locale = params?.locale ?? 'default';
 
-  const monthCount = 12;
   const today = createDate();
 
   const year = params?.year ?? today.year;
@@ -25,7 +26,7 @@ export const createYear = (params?: CreateYearParams) => {
   const createYearMonthes = () => {
     const monthes = [];
 
-    for (let i = 0; i <= monthCount - 1; i += 1) {
+    for (let i = 0; i <= MONTHES_COUNT - 1; i += 1) {
       monthes[i] = getMonthDays(i);
     }
 

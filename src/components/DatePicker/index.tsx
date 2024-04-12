@@ -1,6 +1,4 @@
-import React, {
-  useContext, useEffect, useRef, useState,
-} from 'react';
+import React, { useContext, useRef, useState } from 'react';
 
 import Calendar from '@/components/Calendar';
 import { DateField } from '@/components/DateField';
@@ -32,12 +30,6 @@ const DatePicker: React.FC<Partial<DatePickerProps>> = (
 
   useOutsideClick(calendarRef, () => toggleClose(state.mode), isCalendarOpen);
 
-  useEffect(() => {
-    if (state.mode === 'days' && error.length > 1) {
-      setIsCalendarOpen(false);
-    }
-  }, [state.mode, error]);
-
   const toggleClose = (mode: 'days' | 'monthes' | 'years') => {
     if (mode === 'days' && error.length > 1) {
       setIsCalendarOpen(false);
@@ -65,6 +57,7 @@ const DatePicker: React.FC<Partial<DatePickerProps>> = (
     if (values.length === 10) {
       if (err) {
         setError(err);
+        setIsCalendarOpen(false);
         return;
       }
       const date = formatStringToDate(validateDate(formattedVal));

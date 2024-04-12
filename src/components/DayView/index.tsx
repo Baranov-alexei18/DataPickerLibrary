@@ -5,6 +5,7 @@ import { CalendarContext } from '@/hoc/withCalendarContext';
 import { CalendarContextType } from '@/types/calendar';
 import { CalendarDay } from '@/types/calendar/CalendarState';
 import { checkDateIsEqual, checkIsToday } from '@/utils/Calendar';
+import { isDateInRange } from '@/utils/Calendar/checkDate';
 import { formatDateToString } from '@/utils/Calendar/getFormatDate';
 import { getDataFromContext } from '@/utils/getDataFromContext';
 
@@ -22,8 +23,6 @@ export const DayView = memo(({
   const isToday = (day: CalendarDay) => checkIsToday(day.date);
   const isSelectedDay = (day: CalendarDay) => checkDateIsEqual(day.date, state.selectedDay.date);
   const isAdditionalDay = (day: CalendarDay) => day.monthIndex !== state.selectedMonth.monthIndex;
-
-  const isDateInRange = (date: Date): boolean => date >= minDate && date <= maxDate;
 
   const isWeekend = (day: CalendarDay): boolean => {
     const dayOfWeek = day.date.getDay();
@@ -47,22 +46,16 @@ export const DayView = memo(({
 
   const isViewHoliday = (day: CalendarDay): boolean => {
     const holidayDay = isHoliday(day.date) && !isSelectedDay(day);
-    const weekend = isWeekend(day) && !isSelectedDay(day);
-    return holiday && (holidayDay || weekend);
+    return holiday && holidayDay;
   };
 
   const handleDayClick = (day: CalendarDay) => {
-    if (isDateInRange(day.date) && selectDate) {
+    if (isDateInRange(day.date, maxDate, minDate) && selectDate) {
       functions.setSelectedDay(day);
       setTimeout(() => {
         selectDate(day.date);
       }, 0);
     }
-  };
-  const isInRange = (day: CalendarDay): boolean => {
-    if (!selectedRange || !selectedRange[0] || !selectedRange[1]) return false;
-    const isToRange = day.date > selectedRange[0] && day.date < selectedRange[1];
-    return isToRange;
   };
 
   const handleDoubleClick = (day: CalendarDay) => {
@@ -91,14 +84,15 @@ export const DayView = memo(({
             className={[
               classes.calendar_day,
               isToday(day) ? classes.calendar_today : '',
-              isSelectedDay(day) ? classes.select_day : '',
               isAdditionalDay(day) ? classes.additional_day : '',
-              !isDateInRange(day.date) ? classes.disabled_day : '',
+              !isDateInRange(day.date, maxDate, minDate) ? classes.disabled_day : '',
               selectedRange && selectedRange[0]?.toDateString() === day.date.toDateString() ? classes.start_range : '',
               selectedRange && selectedRange[1]?.toDateString() === day.date.toDateString() ? classes.end_range : '',
-              selectedRange && isInRange(day) && classes.selected_range,
+              selectedRange && isDateInRange(day.date, selectedRange[1]!, selectedRange[0]!, true)
+              && classes.selected_range,
+              isSelectedDay(day) ? classes.select_day : '',
             ].join(' ')}
-            style={{ backgroundColor: isViewHoliday(day) ? holidayColor : '' }}
+            style={{ backgroundColor: isViewHoliday(day) || isWeekend(day) ? holidayColor : '' }}
           >
             {day.dayNumber}
             {hasTodoForDay(day.date) && (

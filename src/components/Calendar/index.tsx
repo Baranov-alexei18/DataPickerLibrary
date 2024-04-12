@@ -29,11 +29,12 @@ const Calendar: React.FC<Partial<CalendarProps>> = memo(({
 
   const DayViewWithHolidays = withHolidaysConditional(DayView, state.selectedYear, holiday);
 
-  const selectedDate = (date: Date | Date[]) => {
+  const selectedDate = (date: Date) => {
     if (selectDate) {
-      selectDate(date as Date);
-    } else if (selectRange) {
-      selectRange(date as Date);
+      selectDate(date);
+    }
+    if (selectRange) {
+      selectRange(date);
     }
   };
 

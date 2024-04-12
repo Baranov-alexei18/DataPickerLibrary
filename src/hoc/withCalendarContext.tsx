@@ -1,6 +1,7 @@
 import React, { createContext, useMemo } from 'react';
 
 import { DatePickerProps } from '@/components/DatePicker/type';
+import { START_DAY_WEEK } from '@/constants';
 import { useCalendar } from '@/hooks/useCalendar';
 import { CalendarContextType } from '@/types/calendar';
 
@@ -15,7 +16,7 @@ export const withCalendarContext = (
 
   const { functions, state } = useCalendar({
     selectedDate: new Date(),
-    firstWeekDayNumber: isFirstWeekDayMonday ? 2 : 1,
+    firstWeekDayNumber: isFirstWeekDayMonday ? START_DAY_WEEK.MONDAY : START_DAY_WEEK.SUNDAY,
   });
 
   const contextValue = useMemo(() => ({

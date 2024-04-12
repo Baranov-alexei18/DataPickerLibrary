@@ -1,3 +1,8 @@
-export const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+export const MONTHES_COUNT = 12;
 
 export const TODO_STORAGE_KEY = 'ToDo';
+
+export const START_DAY_WEEK = {
+  MONDAY: 2,
+  SUNDAY: 1,
+};

@@ -49,6 +49,11 @@ export const TodoList: FC<TodoListProps> = ({ onClose, selectedDate }) => {
     setTodos(updatedTodos);
     localStorage.setItem(TODO_STORAGE_KEY, JSON.stringify(updatedTodos));
   };
+  const handleEnterPress = (e) => {
+    if (e.key === 'Enter') {
+      handleAddTodo();
+    }
+  };
 
   return (
     <div className={classes.wrapper}>
@@ -59,7 +64,12 @@ export const TodoList: FC<TodoListProps> = ({ onClose, selectedDate }) => {
         <button type="button" onClick={onClose}>Back</button>
       </div>
       <div className={classes.add_wrapper}>
-        <input type="text" value={inputValue} onChange={handleInputChange} />
+        <input
+          type="text"
+          value={inputValue}
+          onChange={handleInputChange}
+          onKeyDown={handleEnterPress}
+        />
         <button type="button" onClick={handleAddTodo}>Add</button>
       </div>
       <ul className={classes.body}>

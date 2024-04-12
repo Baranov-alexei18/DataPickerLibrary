@@ -25,7 +25,7 @@
     cursor: pointer;
 
     &:hover {
-        background-color: $primary-hover-color !important;
+        background-color: $primary-hover-color;
         color: $light-color
     }
 }
@@ -36,11 +36,12 @@
 }
 
 .disabled_day {
-    cursor:default;
+    cursor: default;
     color: $dark-color;
     opacity: 0.3;
     padding: 0;
     margin: 0;
+
     &:hover {
         background-color: $primary-hover-color;
         color: inherit;
@@ -63,15 +64,6 @@
     }
 }
 
-.select_day {
-    color: $light-color;
-    background-color: $primary-color;
-
-    &:hover {
-        background-color: $primary-hover-color;
-    }
-}
-
 .calendar_year {
     @include fontSize($font-size-sm, 600);
     display: grid;
@@ -87,28 +79,44 @@
 }
 
 .start_range {
-    border-top-right-radius: 0; 
+    border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-    background-color: $primary-color !important;
+    background-color: $primary-color;
     color: $light-color;
 }
+
 .end_range {
-    border-top-left-radius: 0; 
+    border-top-left-radius: 0;
     border-bottom-left-radius: 0;
-    background-color: $primary-color !important;
+    background-color: $primary-color;
     color: $light-color;
 }
-.selected_range{
+
+.selected_range {
     border-radius: 0;
-    background-color: $primary-light-color !important;
+    background-color: $primary-light-color;
     color: $primary-color;
 }
-.has_todolist{
+
+.weekend_day {
+    background-color: $primary-light-color;
+}
+
+.has_todolist {
     position: absolute;
     top: 4px;
     right: 4px;
     width: 6px;
     height: 6px;
-    background-color: $orange-color; 
+    background-color: $orange-color;
     border-radius: 50%;
+}
+
+.select_day {
+    color: $light-color;
+    background-color: $primary-color;
+
+    &:hover {
+        background-color: $primary-hover-color;
+    }
 }
