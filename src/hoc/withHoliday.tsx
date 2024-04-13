@@ -1,32 +1,31 @@
 import React, { useEffect, useState } from 'react';
 
 import { DayViewProps } from '@/types';
+import { formatStringToDate } from '@/utils/Calendar/getFormatDate';
 import { getHolidayDay } from '@/utils/Calendar/getHolidayDay';
 
 export const withHolidaysConditional = (
   Component: React.ComponentType<DayViewProps>,
-  selectedYear: number,
-  condition: boolean,
+
 ) => function createDayHoliay(props: DayViewProps) {
   const [holidays, setHolidays] = useState([]);
+  const { selectedDate } = props;
 
   useEffect(() => {
-    const fetchHolidays = async (selectYear: number) => {
+    const fetchHolidays = async () => {
       try {
-        const data = await getHolidayDay(selectYear);
+        const year = selectedDate!.length === 10
+          ? formatStringToDate(selectedDate as string).getFullYear()
+          : new Date().getFullYear();
+
+        const data = await getHolidayDay(year);
         setHolidays(data);
       } catch (error) {
         throw new Error('Error fetching holidays');
       }
     };
+    fetchHolidays();
+  }, [selectedDate]);
 
-    if (condition) {
-      fetchHolidays(selectedYear);
-    }
-  }, [selectedYear]);
-
-  if (condition) {
-    return <Component {...props} holidays={holidays} />;
-  }
-  return <Component {...props} />;
+  return <Component {...props} holidays={holidays} />;
 };

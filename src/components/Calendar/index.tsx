@@ -1,9 +1,6 @@
-import React, { memo, useContext } from 'react';
+import React, { FC, useContext } from 'react';
 
 import { CalendarContext } from '@/hoc/withCalendarContext';
-import { withHolidaysConditional } from '@/hoc/withHoliday';
-import { withToDoList } from '@/hoc/withTodoList';
-import { CalendarContextType } from '@/types/calendar';
 
 import { Button } from '../Button';
 import { DayView } from '../DayView';
@@ -11,43 +8,28 @@ import { MonthView } from '../MonthView';
 import { YearView } from '../YearView';
 import { CalendarHeader } from './Header';
 import classes from './styles.module.scss';
-import { CalendarProps } from './type';
+import { CalendarProps, CalendarType } from './type';
 
-const Calendar: React.FC<Partial<CalendarProps>> = memo(({
-  isOpen,
-  selectedRange,
-  clearDate,
-  selectDate,
-  selectRange,
-  openTodo,
-}: Partial<CalendarProps>) => {
-  const calendarContext = useContext(CalendarContext);
-
-  const { state, holiday } = calendarContext as CalendarContextType;
+export const Calendar: FC<Partial<CalendarProps>> = () => {
+  const {
+    state,
+    functions,
+    isOpen,
+    clearDate,
+  } = useContext(CalendarContext) as CalendarType;
 
   if (!isOpen) return null;
 
-  const DayViewWithHolidays = withHolidaysConditional(DayView, state.selectedYear, holiday);
-
-  const selectedDate = (date: Date) => {
-    if (selectDate) {
-      selectDate(date);
-    }
-    if (selectRange) {
-      selectRange(date);
-    }
+  const toggleClearDate = () => {
+    clearDate();
+    functions.setSelectedMonthByIndex(new Date().getMonth(), new Date().getFullYear());
+    functions.setSelectedYear(new Date().getFullYear());
   };
 
   let bodyView;
   switch (state.mode) {
     case 'days': {
-      bodyView = (
-        <DayViewWithHolidays
-          selectDate={selectedDate}
-          selectedRange={selectedRange}
-          openTodo={openTodo}
-        />
-      );
+      bodyView = <DayView />;
       break;
     }
     case 'monthes': {
@@ -65,13 +47,10 @@ const Calendar: React.FC<Partial<CalendarProps>> = memo(({
   }
 
   return (
-    <div className={classes.calendar} aria-hidden>
+    <div className={classes.calendar}>
       <CalendarHeader />
       {bodyView}
-      <Button onClick={clearDate}>Clear</Button>
+      <Button onClick={toggleClearDate}>Clear</Button>
     </div>
-
   );
-});
-
-export default withToDoList(Calendar);
+};

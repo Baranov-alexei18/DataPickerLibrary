@@ -1,32 +1,42 @@
-import React, { createContext, useMemo } from 'react';
+import React, { createContext, useEffect, useMemo } from 'react';
 
-import { DatePickerProps } from '@/components/DatePicker/type';
-import { START_DAY_WEEK } from '@/constants';
+import { CalendarProps } from '@/components/Calendar/type';
+import { START_DAY_WEEK, VALIDE_DATE_LENGTH } from '@/constants';
 import { useCalendar } from '@/hooks/useCalendar';
 import { CalendarContextType } from '@/types/calendar';
+import { formatStringToDate } from '@/utils/Calendar/getFormatDate';
 
 export const CalendarContext = createContext<CalendarContextType | null>(null);
 
 export const withCalendarContext = (
-  Component: React.FC<Partial<DatePickerProps>>,
+  Component:React.FC<Partial<CalendarProps>>,
 ) => function Calendar(props: CalendarContextType) {
-  const {
-    isFirstWeekDayMonday, minDate, maxDate, holiday, holidayColor,
-  } = props;
+  const { isFirstWeekDayMonday, selectedDate, selectedRange } = props;
 
   const { functions, state } = useCalendar({
-    selectedDate: new Date(),
+    selectedDate: selectedDate && selectedDate.length === VALIDE_DATE_LENGTH
+      ? formatStringToDate(selectedDate)
+      : new Date(),
     firstWeekDayNumber: isFirstWeekDayMonday ? START_DAY_WEEK.MONDAY : START_DAY_WEEK.SUNDAY,
   });
 
+  useEffect(() => {
+    const updateCalendarState = (date: Date = new Date()) => {
+      functions.setSelectedMonthByIndex(date.getMonth(), date.getFullYear());
+      functions.setSelectedYear(date.getFullYear());
+    };
+    if (selectedDate && selectedDate.length === VALIDE_DATE_LENGTH) {
+      updateCalendarState(formatStringToDate(selectedDate));
+    }
+  }, [selectedDate]);
+
   const contextValue = useMemo(() => ({
+    ...props,
     functions,
     state,
-    minDate,
-    maxDate,
-    holiday,
-    holidayColor,
-  }), [functions, state, minDate, maxDate, holiday, holidayColor]);
+    selectedDate,
+    selectedRange,
+  }), [selectedDate, selectedRange, state, functions, props]);
 
   return (
     <CalendarContext.Provider value={contextValue}>

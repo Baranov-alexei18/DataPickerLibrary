@@ -13,5 +13,7 @@ export type CalendarContextType = {
     minDate: Date;
     maxDate: Date;
     holidayColor: string;
-    holiday: boolean
+    holiday: boolean;
+    selectedDate: string;
+    selectedRange: [Date | null, Date | null];
 }

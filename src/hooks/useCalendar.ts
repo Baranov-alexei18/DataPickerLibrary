@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { DAYS_IN_WEEK } from '@/constants';
+import { UseCalendarType } from '@/types';
 import { CalendarType } from '@/types/calendar';
 import {
   createDate,
@@ -7,26 +9,14 @@ import {
   getMonthesNames,
   getMonthNumberOfDays,
   getWeekDaysNames,
+  getYearsInterval,
 } from '@/utils/Calendar';
-
-type UseCalendarParams = {
-  locale?: string;
-  selectedDate: Date;
-  firstWeekDayNumber?: number;
-}
-
-const DAYS_IN_WEEK = 7;
-
-const getYearsInterval = (year: number) => {
-  const startYear = Math.floor(year / 10) * 10;
-  return [...Array(10)].map((_, index) => startYear + index);
-};
 
 export const useCalendar = ({
   locale = 'en',
   selectedDate,
   firstWeekDayNumber = 2,
-}: UseCalendarParams): CalendarType => {
+}: UseCalendarType): CalendarType => {
   const [mode, setMode] = React.useState<'days' | 'monthes' | 'years'>('days');
   const [selectedDay, setSelectedDay] = React.useState(createDate({ date: selectedDate }));
   const [selectedMonth, setSelectedMonth] = React.useState(

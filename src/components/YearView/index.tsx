@@ -2,14 +2,11 @@ import React, { useContext } from 'react';
 
 import { CalendarContext } from '@/hoc/withCalendarContext';
 import { CalendarType } from '@/types/calendar';
-import { getDataFromContext } from '@/utils/getDataFromContext';
 
 import classes from './styles.module.scss';
 
 export const YearView = () => {
-  const calendarContext = useContext(CalendarContext);
-
-  const { state, functions } = getDataFromContext(calendarContext) as CalendarType;
+  const { state, functions } = useContext(CalendarContext) as CalendarType;
 
   return (
     <div className={classes.calendar_year}>

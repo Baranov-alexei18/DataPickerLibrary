@@ -1,6 +1,6 @@
 export type firstWeekDayType = 2 | 1;
 
-type holidayApiType = {
+export type holidayApiType = {
     date: string;
     localName: string;
     name: string;
@@ -14,7 +14,14 @@ type holidayApiType = {
 
 export type DayViewProps = {
     selectDate?: (date: Date) => void;
+    selectRange?: (date: Date) => void;
     holidays?: holidayApiType[];
-    selectedRange: [Date | null, Date | null] | undefined;
-    openTodo?: (date:Date) => void;
+    openTodo?: (date: Date) => void;
+    selectedDate?: string;
 }
+
+export type UseCalendarType = {
+    locale?: string;
+    selectedDate: Date;
+    firstWeekDayNumber?: number;
+  }

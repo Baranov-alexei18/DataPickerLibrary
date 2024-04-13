@@ -1,25 +1,27 @@
-import React, { useState } from 'react';
+import React, { FC, useCallback, useState } from 'react';
 
+import { CalendarProps } from '@/components/Calendar/type';
 import { TodoList } from '@/components/TodoList';
 
-export const withToDoList = (WrappedComponent) => function todo(props) {
+const withToDoList = (WrappedComponent: FC<CalendarProps>) => function Todo(props: CalendarProps) {
   const [isTodoOpen, setIsTodoOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
-  const openTodo = (date: Date) => {
+  const toogleTodo = (date: Date) => {
     setIsTodoOpen(true);
     setSelectedDate(date);
   };
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setIsTodoOpen(false);
     setSelectedDate(null);
-  };
+  }, []);
 
   return (
     <>
-      <WrappedComponent openTodo={openTodo} {...props} />
+      <WrappedComponent {...props} openTodo={toogleTodo} />
       {isTodoOpen && <TodoList onClose={handleClose} selectedDate={selectedDate} />}
     </>
   );
 };
+export { withToDoList };

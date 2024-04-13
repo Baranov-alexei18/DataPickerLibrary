@@ -36,6 +36,7 @@
     "react/jsx-props-no-spreading": "off",
     "no-plusplus":"off",
     "no-use-before-define": "off",
+    "class-methods-use-this": "off",
     "consistent-return": "off",
     "no-shadow": "off"
   },

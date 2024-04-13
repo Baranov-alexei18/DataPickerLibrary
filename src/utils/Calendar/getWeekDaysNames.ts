@@ -1,10 +1,12 @@
+import { DAYS_IN_WEEK } from '@/constants';
+
 import { createDate } from './createDate';
 
 export const getWeekDaysNames = (firstWeekDay: number = 1, locale: string = 'default') => {
   const weekDaysNames: {
     day: ReturnType<typeof createDate>['day'];
     dayShort: ReturnType<typeof createDate>['dayShort'];
-  }[] = Array.from({ length: 7 });
+  }[] = Array.from({ length: DAYS_IN_WEEK });
 
   const date = new Date();
 

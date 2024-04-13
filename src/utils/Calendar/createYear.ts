@@ -1,13 +1,8 @@
 import { MONTHES_COUNT } from '@/constants';
+import { CreateYearParams } from '@/types/date';
 
 import { createDate } from './createDate';
 import { createMonth } from './createMonth';
-
-interface CreateYearParams {
-  year?: number;
-  locale?: string;
-  monthNumber?: number;
-}
 
 export const createYear = (params?: CreateYearParams) => {
   const locale = params?.locale ?? 'default';
@@ -38,4 +33,9 @@ export const createYear = (params?: CreateYearParams) => {
     month,
     year,
   };
+};
+
+export const getYearsInterval = (year: number) => {
+  const startYear = Math.floor(year / 10) * 10;
+  return [...Array(10)].map((_, index) => startYear + index);
 };

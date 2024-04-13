@@ -1,12 +1,8 @@
+import { CreateDateParams } from '@/types/date';
+
 import { createDate } from './createDate';
-import { getMonthNumberOfDays } from './getMonthNumberOfDays';
 
-interface CreateMonthParams {
-  date?: Date;
-  locale?: string;
-}
-
-export const createMonth = (params?: CreateMonthParams) => {
+export const createMonth = (params?: CreateDateParams) => {
   const date = params?.date ?? new Date();
   const locale = params?.locale ?? 'default';
 
@@ -36,3 +32,8 @@ export const createMonth = (params?: CreateMonthParams) => {
     createMonthDays,
   };
 };
+
+export const getMonthNumberOfDays = (
+  monthIndex: number,
+  yearNumber: number = new Date().getFullYear(),
+) => new Date(yearNumber, monthIndex + 1, 0).getDate();

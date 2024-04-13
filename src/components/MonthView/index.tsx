@@ -2,21 +2,15 @@ import React, { useContext } from 'react';
 
 import { CalendarContext } from '@/hoc/withCalendarContext';
 import { CalendarType } from '@/types/calendar';
-import { getDataFromContext } from '@/utils/getDataFromContext';
 
 import classes from './styles.module.scss';
 
 export const MonthView = () => {
-  const calendarContext = useContext(CalendarContext);
-
-  const { state, functions } = getDataFromContext(calendarContext) as CalendarType;
+  const { state, functions } = useContext(CalendarContext) as CalendarType;
 
   const updateMonth = (indexMonth: number) => {
     functions.setSelectedMonthByIndex(indexMonth);
-
-    setTimeout(() => {
-      functions.setMode('days');
-    }, 0);
+    functions.setMode('days');
   };
 
   return (

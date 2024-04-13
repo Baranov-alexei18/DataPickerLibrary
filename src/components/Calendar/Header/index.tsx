@@ -1,21 +1,20 @@
-import React, { ReactNode, useCallback, useContext } from 'react';
+import React, { ReactNode, useContext } from 'react';
 
 import Next from '@/assets/svg/Next.svg';
 import Prev from '@/assets/svg/Prev.svg';
 import { CalendarContext } from '@/hoc/withCalendarContext';
 import { CalendarType } from '@/types/calendar';
-import { getDataFromContext } from '@/utils/getDataFromContext';
 
 import classes from './styles.module.scss';
 
 export const CalendarHeader = () => {
   let labelHeader: ReactNode;
-  const calendarContext = useContext(CalendarContext);
-  const { state, functions } = getDataFromContext(calendarContext) as CalendarType;
+
+  const { state, functions } = useContext(CalendarContext) as CalendarType;
 
   const setMode = (mode: 'days'|'monthes'|'years') => () => functions.setMode(mode);
 
-  const handleArrow = (arrow: 'left' | 'right') => useCallback(() => functions.onClickArrow(arrow), [functions.onClickArrow]);
+  const handleArrow = (arrow: 'left' | 'right') => () => functions.onClickArrow(arrow);
 
   switch (state.mode) {
     case 'days': {
