@@ -2,24 +2,19 @@ import React from 'react';
 
 import CalendarSVG from '@/assets/svg/Calendar.svg';
 import ClearIconSVG from '@/assets/svg/Clear.svg';
+import { VALIDE_DATE_LENGTH } from '@/constants';
 import { formatDateToString } from '@/utils/Calendar/getFormatDate';
 
 import classes from './styles.module.scss';
 import { DateFieldProps } from './type';
 
 export const DateField: React.FC<DateFieldProps> = ({
-  value, className, onChange, onClear, onFocus, closeCalendar,
+  value, className, onChange, onClear, onFocus,
 }) => {
-  let dateInput;
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     onChange!(value);
   };
-
-  if (value !== undefined) {
-    dateInput = value.length > 10 ? formatDateToString(new Date(value)) : value;
-  }
 
   return (
     <div className={`${classes.datefield_wrapper} ${className}`}>
@@ -31,11 +26,10 @@ export const DateField: React.FC<DateFieldProps> = ({
       <input
         type="text"
         className={classes.date_input}
-        value={dateInput}
+        value={value!.length > VALIDE_DATE_LENGTH ? formatDateToString(new Date(value!)) : value}
         placeholder="Choose Date"
         onFocus={onFocus}
         onChange={handleChange}
-        onDoubleClick={closeCalendar}
       />
       {value && (
         <img

@@ -1,18 +1,12 @@
-import React, { ReactNode } from 'react';
+import React, { FC } from 'react';
 
 import classes from './styles.module.scss';
+import { ButtonProp } from './type';
 
-interface ButtonProp {
-  onClick: () => void;
-  disabled?: boolean;
-  children: ReactNode
-}
-export type ButtonProps = Partial<ButtonProp>;
-
-export const Button:React.FC<ButtonProps> = ({
+export const Button:FC<ButtonProp> = ({
   disabled, children, ...rest
 }) => (
-  <button type="button" className={classes.Button} disabled={disabled} {...rest}>
+  <button type="button" className={classes.wrappper} disabled={disabled} {...rest}>
     {children}
   </button>
 );
