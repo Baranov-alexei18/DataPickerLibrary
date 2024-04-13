@@ -1,14 +1,22 @@
 import React, { useCallback, useState } from 'react';
 
-import { withCalendarContext } from '@/hoc/withCalendarContext';
+import CalendarService from '@/services/serviceCalendar';
 import { formatDateToString } from '@/utils/Calendar/getFormatDate';
 
-import Calendar from '../Calendar';
+import { CalendarServiceType } from '../Calendar/type';
 import { DateField } from '../DateField';
 import { DatePickerProps } from '../DatePicker/type';
 import classes from './styles.module.scss';
 
-const RangePicker: React.FC<Partial<DatePickerProps>> = () => {
+export const RangePicker: React.FC<Partial<DatePickerProps>> = (
+  {
+    minDate = new Date(2000, 1, 1),
+    maxDate = new Date(2200, 1, 1),
+    isFirstWeekDayMonday = true,
+    holiday = false,
+    holidayColor = 'inherit',
+  },
+) => {
   const [selectedRange, setSelectedRange] = useState<[Date | null, Date | null]>([null, null]);
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
 
@@ -30,10 +38,10 @@ const RangePicker: React.FC<Partial<DatePickerProps>> = () => {
     }
   };
 
-  const handleClearRange = () => {
+  const handleClearRange = useCallback(() => {
     setSelectedRange([null, null]);
     closeCalendar();
-  };
+  }, []);
 
   const handleInputClick = useCallback(() => {
     setIsCalendarOpen(true);
@@ -42,6 +50,20 @@ const RangePicker: React.FC<Partial<DatePickerProps>> = () => {
   const closeCalendar = useCallback(() => {
     setIsCalendarOpen(false);
   }, []);
+
+  const configCalendar:CalendarServiceType = {
+    isOpen: isCalendarOpen,
+    selectedRange,
+    selectRange: (selectedDate: Date) => {
+      handleSelectRange(selectedDate);
+    },
+    clearDate: () => handleClearRange(),
+    isFirstWeekDayMonday,
+    holiday,
+    holidayColor,
+    minDate,
+    maxDate,
+  };
 
   return (
     <div className={classes.wrapper}>
@@ -63,13 +85,7 @@ const RangePicker: React.FC<Partial<DatePickerProps>> = () => {
         onFocus={handleInputClick}
         closeCalendar={() => setIsCalendarOpen(false)}
       />
-      <Calendar
-        isOpen={isCalendarOpen}
-        selectedRange={selectedRange}
-        selectRange={handleSelectRange}
-        clearDate={handleClearRange}
-      />
+      {CalendarService.createCalendar(configCalendar)}
     </div>
   );
 };
-export default withCalendarContext(RangePicker);
