@@ -1,6 +1,7 @@
 import React, { FC, useContext } from 'react';
 
 import { CalendarContext } from '@/hoc/withCalendarContext';
+import { CalendarContextType } from '@/types/calendar';
 
 import { Button } from '../Button';
 import { DayView } from '../DayView';
@@ -8,7 +9,7 @@ import { MonthView } from '../MonthView';
 import { YearView } from '../YearView';
 import { CalendarHeader } from './Header';
 import classes from './styles.module.scss';
-import { CalendarProps, CalendarType } from './type';
+import { CalendarProps } from './type';
 
 export const Calendar: FC<Partial<CalendarProps>> = () => {
   const {
@@ -16,7 +17,7 @@ export const Calendar: FC<Partial<CalendarProps>> = () => {
     functions,
     isOpen,
     clearDate,
-  } = useContext(CalendarContext) as CalendarType;
+  } = useContext(CalendarContext) as CalendarContextType;
 
   if (!isOpen) return null;
 

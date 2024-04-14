@@ -13,6 +13,6 @@ export const getHolidayDay = async (year: number) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error(error);
+    throw new Error('Error in get holidays API');
   }
 };

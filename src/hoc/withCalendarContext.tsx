@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useMemo } from 'react';
 
 import { CalendarProps } from '@/components/Calendar/type';
+import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { START_DAY_WEEK, VALIDE_DATE_LENGTH } from '@/constants';
 import { useCalendar } from '@/hooks/useCalendar';
 import { CalendarContextType } from '@/types/calendar';
@@ -9,7 +10,7 @@ import { formatStringToDate } from '@/utils/Calendar/getFormatDate';
 export const CalendarContext = createContext<CalendarContextType | null>(null);
 
 export const withCalendarContext = (
-  Component:React.FC<Partial<CalendarProps>>,
+  Component: React.FC<Partial<CalendarProps>>,
 ) => function Calendar(props: CalendarContextType) {
   const { isFirstWeekDayMonday, selectedDate, selectedRange } = props;
 
@@ -39,8 +40,10 @@ export const withCalendarContext = (
   }), [selectedDate, selectedRange, state, functions, props]);
 
   return (
-    <CalendarContext.Provider value={contextValue}>
-      <Component {...props} />
-    </CalendarContext.Provider>
+    <ErrorBoundary>
+      <CalendarContext.Provider value={contextValue}>
+        <Component {...props} />
+      </CalendarContext.Provider>
+    </ErrorBoundary>
   );
 };

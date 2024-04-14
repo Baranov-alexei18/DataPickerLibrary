@@ -16,4 +16,6 @@ export type CalendarContextType = {
     holiday: boolean;
     selectedDate: string;
     selectedRange: [Date | null, Date | null];
+    isOpen: boolean;
+    clearDate: () => void;
 }

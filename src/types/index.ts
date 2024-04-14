@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 export type firstWeekDayType = 2 | 1;
 
 export type holidayApiType = {
@@ -24,4 +26,12 @@ export type UseCalendarType = {
     locale?: string;
     selectedDate: Date;
     firstWeekDayNumber?: number;
+  }
+
+export type ErrorBoundaryProps = {
+    children: ReactNode;
+  }
+
+export type ErrorBoundaryState = {
+    hasError: boolean;
   }
