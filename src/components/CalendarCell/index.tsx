@@ -5,14 +5,14 @@ import { DayViewProps } from '@/types';
 import { CalendarContextType } from '@/types/calendar';
 import { CalendarDay } from '@/types/calendar/CalendarState';
 import {
+  checkIsToday,
   isAdditionalDay,
   isDateInRange,
   isHoliday,
   isSelectedDay,
-  isToday,
   isWeekend,
 } from '@/utils/Calendar/checkDate';
-import { hasTodoForDay } from '@/utils/Calendar/hasTodoForDay';
+import { hasTodoForDay } from '@/utils/Calendar/getTodoForDay';
 
 import classes from './styles.module.scss';
 
@@ -74,7 +74,7 @@ export const CalendarCell: FC<CalendarCellType> = ({ dayCell }) => {
       onContextMenu={(e) => handleRightMouseClick(e, date)}
       className={[
         classes.calendar_day,
-        isToday(dayCell) ? classes.calendar_today : '',
+        checkIsToday(date) ? classes.calendar_today : '',
         isAdditionalDay(dayCell, state.selectedMonth.monthIndex) ? classes.additional_day : '',
         !isDateInRange(date, maxDate, minDate) ? classes.disabled_day : '',
         selectedRange && selectedRange[0]?.toDateString() === date.toDateString() ? classes.start_range : '',

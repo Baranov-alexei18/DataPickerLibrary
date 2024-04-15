@@ -4,7 +4,6 @@ import { CalendarDay } from '@/types/calendar/CalendarState';
 
 const checkIsToday = (date: Date) => {
   const today = new Date();
-
   return checkDateIsEqual(today, date);
 };
 
@@ -16,10 +15,8 @@ const checkDateIsEqual = (date1: Date, date2: Date = new Date()) => {
   return isDate;
 };
 
-const isToday = (day: CalendarDay) => checkIsToday(day.date);
-
-const isWeekend = (day: CalendarDay): boolean => {
-  const dayOfWeek = day.date.getDay();
+const isWeekend = (day: Partial<CalendarDay>): boolean => {
+  const dayOfWeek = day?.date?.getDay();
   return dayOfWeek === DAY_NUMBER_WEEK.SUNDAY || dayOfWeek === DAY_NUMBER_WEEK.SATURDAY;
 };
 
@@ -34,7 +31,7 @@ const isHoliday = (dateHoliday: Date, holidays:holidayApiType[], show:boolean): 
   return !!matchingHoliday;
 };
 
-const isDateInRange = (date: Date, max: Date, min: Date, strict: boolean = false) => {
+const isDateInRange = (date: Date, max?: Date, min?: Date, strict: boolean = false) => {
   if (!min || !max) return false;
 
   if (strict) {
@@ -50,10 +47,10 @@ const isSelectedDay = (day: CalendarDay, dateNow: Date) => checkDateIsEqual(day.
 
 export {
   checkDateIsEqual,
+  checkIsToday,
   isAdditionalDay,
   isDateInRange,
   isHoliday,
   isSelectedDay,
-  isToday,
   isWeekend,
 };

@@ -4,7 +4,7 @@ export const validateDate = (value: string): string => {
   let validDate: string = value;
   const [day, month, year] = value.split('/').map(Number);
 
-  const daysInMonth = (m: number, y: number): number => new Date(y, m, 1).getDate();
+  const daysInMonth = (m: number, y: number): number => new Date(y, m, 0).getDate();
 
   const isValidMonth = month >= 1 && month <= 12;
   const isValidDay = daysInMonth(month, year);
