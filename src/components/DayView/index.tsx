@@ -1,4 +1,4 @@
-import React, { memo, useContext } from 'react';
+import React, { Fragment, memo, useContext } from 'react';
 
 import { CalendarContext } from '@/hoc/withCalendarContext';
 import { CalendarContextType } from '@/types/calendar';
@@ -18,7 +18,9 @@ export const DayView = memo(() => {
       </div>
       <div className={classes.table_days}>
         {state.calendarDays.map((day) => (
-          <CalendarCell dayCell={day} />
+          <Fragment key={`${day.dayNumber}-${day.monthIndex}`}>
+            <CalendarCell dayCell={day} />
+          </Fragment>
         ))}
       </div>
     </>

@@ -12,7 +12,7 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "types": ["@storybook/react", "@svgr/webpack"]
+    "types": ["@storybook/react", "@svgr/webpack", "jest"]
   },
   "exclude": [
     "node_modules",

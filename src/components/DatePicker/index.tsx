@@ -6,7 +6,7 @@ import { useOutsideClick } from '@/hooks/useOutsideClick';
 import CalendarService from '@/services/serviceCalendar';
 import { formatDateToString, formatStringToDate } from '@/utils/Calendar/getFormatDate';
 import { getErrorMessage, getMaskForDateField } from '@/utils/datefield';
-import { validateDate } from '@/utils/validateDate';
+import { validateDate } from '@/utils/validationDate';
 
 import { CalendarServiceType } from '../Calendar/type';
 import classes from './styles.module.scss';

@@ -21,7 +21,7 @@ type CalendarCellType = {
 }
 
 export const CalendarCell: FC<CalendarCellType> = ({ dayCell }) => {
-  const { dayNumber, monthIndex, date } = dayCell;
+  const { dayNumber, date } = dayCell;
 
   const {
     state,
@@ -69,7 +69,6 @@ export const CalendarCell: FC<CalendarCellType> = ({ dayCell }) => {
 
   return (
     <div
-      key={`${dayNumber}-${monthIndex}`}
       aria-hidden
       onClick={() => handleDayClick(dayCell)}
       onContextMenu={(e) => handleRightMouseClick(e, date)}
