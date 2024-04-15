@@ -6,6 +6,7 @@ import { formatDateToString } from '@/utils/Calendar/getFormatDate';
 import { CalendarServiceType } from '../Calendar/type';
 import { DateField } from '../DateField';
 import { DatePickerProps } from '../DatePicker/type';
+
 import classes from './styles.module.scss';
 
 export const RangePicker: React.FC<Partial<DatePickerProps>> = (

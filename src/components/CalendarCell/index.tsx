@@ -69,6 +69,7 @@ export const CalendarCell: FC<CalendarCellType> = ({ dayCell }) => {
 
   return (
     <div
+      data-testid="calendar-cell"
       aria-hidden
       onClick={() => handleDayClick(dayCell)}
       onContextMenu={(e) => handleRightMouseClick(e, date)}

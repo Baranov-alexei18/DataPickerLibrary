@@ -1,16 +1,17 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import { DateField } from '@/components/DateField';
 import { VALIDE_DATE_LENGTH } from '@/constants';
-import { useOutsideClick } from '@/hooks/useOutsideClick';
 import CalendarService from '@/services/serviceCalendar';
 import { formatDateToString, formatStringToDate } from '@/utils/Calendar/getFormatDate';
 import { getErrorMessage, getMaskForDateField } from '@/utils/datefield';
 import { validateDate } from '@/utils/validationDate';
 
 import { CalendarServiceType } from '../Calendar/type';
-import classes from './styles.module.scss';
+
 import { DatePickerProps } from './type';
+
+import classes from './styles.module.scss';
 
 export const DatePicker: React.FC<Partial<DatePickerProps>> = (
   {
@@ -25,10 +26,7 @@ export const DatePicker: React.FC<Partial<DatePickerProps>> = (
 ) => {
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const [inputValue, setInputValue] = useState(value);
-  const [error, setError] = useState<string>('');
-  const calendarRef = useRef(null);
-
-  useOutsideClick(calendarRef, () => setIsCalendarOpen(false), isCalendarOpen);
+  const [error, setError] = useState('');
 
   const handleInputClick = useCallback(() => {
     setIsCalendarOpen(true);
@@ -82,7 +80,7 @@ export const DatePicker: React.FC<Partial<DatePickerProps>> = (
   };
 
   return (
-    <div ref={calendarRef} className={classes.datepicker_wrapper}>
+    <div className={classes.datepicker_wrapper}>
       <DateField
         value={inputValue}
         className={error && classes.error}

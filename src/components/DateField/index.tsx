@@ -5,8 +5,9 @@ import ClearIconSVG from '@/assets/svg/Clear.svg';
 import { VALIDE_DATE_LENGTH } from '@/constants';
 import { formatDateToString } from '@/utils/Calendar/getFormatDate';
 
-import classes from './styles.module.scss';
 import { DateFieldProps } from './type';
+
+import classes from './styles.module.scss';
 
 export const DateField: React.FC<DateFieldProps> = ({
   value, className, onChange, onClear, onFocus,

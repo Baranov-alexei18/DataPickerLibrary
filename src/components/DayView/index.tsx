@@ -4,6 +4,7 @@ import { CalendarContext } from '@/hoc/withCalendarContext';
 import { CalendarContextType } from '@/types/calendar';
 
 import { CalendarCell } from '../CalendarCell';
+
 import classes from './styles.module.scss';
 
 export const DayView = memo(() => {

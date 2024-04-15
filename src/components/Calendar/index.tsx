@@ -1,4 +1,4 @@
-import React, { FC, useContext } from 'react';
+import React, { FC, useCallback, useContext } from 'react';
 
 import { CalendarContext } from '@/hoc/withCalendarContext';
 import { CalendarContextType } from '@/types/calendar';
@@ -7,9 +7,11 @@ import { Button } from '../Button';
 import { DayView } from '../DayView';
 import { MonthView } from '../MonthView';
 import { YearView } from '../YearView';
+
 import { CalendarHeader } from './Header';
-import classes from './styles.module.scss';
 import { CalendarProps } from './type';
+
+import classes from './styles.module.scss';
 
 export const Calendar: FC<Partial<CalendarProps>> = () => {
   const {
@@ -19,13 +21,13 @@ export const Calendar: FC<Partial<CalendarProps>> = () => {
     clearDate,
   } = useContext(CalendarContext) as CalendarContextType;
 
-  if (!isOpen) return null;
-
-  const toggleClearDate = () => {
+  const toggleClearDate = useCallback(() => {
     clearDate();
     functions.setSelectedMonthByIndex(new Date().getMonth(), new Date().getFullYear());
     functions.setSelectedYear(new Date().getFullYear());
-  };
+  }, []);
+
+  if (!isOpen) return null;
 
   let bodyView;
   switch (state.mode) {

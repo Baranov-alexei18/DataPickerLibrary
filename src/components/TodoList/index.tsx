@@ -1,16 +1,23 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useCallback, useState } from 'react';
 
 import { TODO_STORAGE_KEY } from '@/constants';
 import { formatDateToString } from '@/utils/Calendar/getFormatDate';
 
-import classes from './styles.module.scss';
 import { TodoItem, TodoListProps } from './type';
+
+import classes from './styles.module.scss';
 
 export const TodoList: FC<TodoListProps> = ({ onClose, selectedDate }) => {
   const [inputValue, setInputValue] = useState('');
   const [todos, setTodos] = useState(
     () => JSON.parse(localStorage.getItem(TODO_STORAGE_KEY)!),
   );
+
+  const handleEnterPress = useCallback((e: { key: string; }) => {
+    if (e.key === 'Enter') {
+      handleAddTodo();
+    }
+  }, []);
 
   const handleInputChange = (e: { target: { value: React.SetStateAction<string>; }; }) => {
     setInputValue(e.target.value);
@@ -51,12 +58,6 @@ export const TodoList: FC<TodoListProps> = ({ onClose, selectedDate }) => {
 
     setTodos(updatedTodos);
     localStorage.setItem(TODO_STORAGE_KEY, JSON.stringify(updatedTodos));
-  };
-
-  const handleEnterPress = (e: { key: string; }) => {
-    if (e.key === 'Enter') {
-      handleAddTodo();
-    }
   };
 
   return (

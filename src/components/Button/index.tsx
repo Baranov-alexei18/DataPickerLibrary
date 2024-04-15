@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
 
-import classes from './styles.module.scss';
 import { ButtonProp } from './type';
+
+import classes from './styles.module.scss';
 
 export const Button:FC<ButtonProp> = ({
   disabled, children, ...rest
