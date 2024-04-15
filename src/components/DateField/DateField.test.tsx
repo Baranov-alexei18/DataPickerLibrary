@@ -15,7 +15,7 @@ describe('DateField', () => {
     render(
       <DateField
         value={value}
-        className="custom-class"
+        className="class"
         onChange={onChange}
         onClear={onClear}
         onFocus={onFocus}

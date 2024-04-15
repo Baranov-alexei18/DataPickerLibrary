@@ -88,7 +88,7 @@ export const CalendarCell: FC<CalendarCellType> = ({ dayCell }) => {
     >
       {dayNumber}
       {hasTodoForDay(date) && (
-      <div className={classes.has_todolist} />
+        <div className={classes.has_todolist} />
       )}
     </div>
   );

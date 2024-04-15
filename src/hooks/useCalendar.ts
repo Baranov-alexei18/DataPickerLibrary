@@ -10,7 +10,7 @@ import {
   getMonthNumberOfDays,
   getWeekDaysNames,
   getYearsInterval,
-} from '@/utils/Calendar';
+} from '@/helpers';
 
 export const useCalendar = ({
   locale = 'en',

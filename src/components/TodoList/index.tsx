@@ -70,6 +70,7 @@ export const TodoList: FC<TodoListProps> = ({ onClose, selectedDate }) => {
       </div>
       <div className={classes.add_wrapper}>
         <input
+          data-testid="todolist-input"
           type="text"
           value={inputValue}
           onChange={handleInputChange}

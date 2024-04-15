@@ -19,7 +19,7 @@ export const CalendarHeader = () => {
   switch (state.mode) {
     case 'days': {
       labelHeader = (
-        <div aria-hidden onClick={setMode('monthes')}>
+        <div data-testid="days-view" aria-hidden onClick={setMode('monthes')}>
           {state.monthesNames[state.selectedMonth.monthIndex].month}
           {' '}
           {state.selectedYear}
@@ -29,7 +29,7 @@ export const CalendarHeader = () => {
     }
     case 'monthes': {
       labelHeader = (
-        <div aria-hidden onClick={setMode('years')}>
+        <div data-testid="monthes-view" aria-hidden onClick={setMode('years')}>
           {state.selectedYear}
         </div>
       );
@@ -37,7 +37,7 @@ export const CalendarHeader = () => {
     }
     case 'years': {
       labelHeader = (
-        <div>
+        <div data-testid="years-view">
           {state.selectedYearsInterval[0]}
           -
           {state.selectedYearsInterval[state.selectedYearsInterval.length - 1]}

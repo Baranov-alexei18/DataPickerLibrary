@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { DayViewProps } from '@/types';
 import { formatStringToDate } from '@/utils/Calendar/getFormatDate';
-import { getHolidayDay } from '@/utils/Calendar/getHolidayDay';
+import { getHolidayDay } from '@/helpers/getHolidayDay';
 
 export const withHolidaysConditional = (
   Component: React.ComponentType<DayViewProps>,
