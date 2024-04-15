@@ -1,4 +1,4 @@
-import { mockHolidays } from '@/constants/mock';
+import { mockHolidays } from '@/constants/mocks/mock';
 import { CalendarDay } from '@/types/calendar/CalendarState';
 
 import {
