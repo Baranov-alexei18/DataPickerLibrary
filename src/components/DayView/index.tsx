@@ -9,16 +9,16 @@ import classes from './styles.module.scss';
 
 export const DayView = memo(() => {
   const { state } = useContext(CalendarContext) as CalendarContextType;
-
+  const { weekDaysNames, calendarDays } = state;
   return (
     <>
       <div className={classes.week_names}>
-        {state.weekDaysNames.map((weekDaysName) => (
-          <div key={weekDaysName.dayShort}>{weekDaysName.dayShort}</div>
+        {weekDaysNames.map(({ dayShort }) => (
+          <div key={dayShort}>{dayShort}</div>
         ))}
       </div>
       <div className={classes.table_days}>
-        {state.calendarDays.map((day) => (
+        {calendarDays.map((day) => (
           <Fragment key={`${day.dayNumber}-${day.monthIndex}`}>
             <CalendarCell dayCell={day} />
           </Fragment>

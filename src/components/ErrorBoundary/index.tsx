@@ -17,7 +17,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
     const { children } = this.props;
 
     if (hasError) {
-      return <h1>Что-то пошло не так.</h1>;
+      return <h4>Что-то пошло не так.</h4>;
     }
 
     return children;

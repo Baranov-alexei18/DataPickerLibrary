@@ -75,7 +75,7 @@ export const RangePicker: React.FC<Partial<DatePickerProps>> = (
         value={selectedRange[0] ? formatDateToString(selectedRange[0]) : ''}
         onClear={handleClearRange}
         onFocus={handleInputClick}
-        closeCalendar={() => setIsCalendarOpen(false)}
+        closeCalendar={closeCalendar}
       />
       <p>
         To
@@ -84,7 +84,7 @@ export const RangePicker: React.FC<Partial<DatePickerProps>> = (
         value={selectedRange[1] ? formatDateToString(selectedRange[1]) : ''}
         onClear={handleClearRange}
         onFocus={handleInputClick}
-        closeCalendar={() => setIsCalendarOpen(false)}
+        closeCalendar={closeCalendar}
       />
       {CalendarService.createCalendar(configCalendar)}
     </div>

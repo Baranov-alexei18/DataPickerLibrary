@@ -26,7 +26,13 @@ export type UseCalendarType = {
     locale?: string;
     selectedDate: Date;
     firstWeekDayNumber?: number;
-  }
+}
+
+export type TodoLocalstorageType = {
+  id: number;
+  text: string;
+  date: string;
+}
 
 export type ErrorBoundaryProps = {
     children: ReactNode;
@@ -34,4 +40,4 @@ export type ErrorBoundaryProps = {
 
 export type ErrorBoundaryState = {
     hasError: boolean;
-  }
+}

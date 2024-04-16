@@ -44,14 +44,14 @@ export const CalendarCell: FC<CalendarCellType> = ({ dayCell }) => {
     return holiday && (holidayDay || isWeekend(day));
   };
 
-  const handleDayClick = (day: CalendarDay) => {
+  const handleDayClick = (day: CalendarDay) => () => {
     if (isDateInRange(date, maxDate, minDate) && toogleSelectedDay) {
       functions.setSelectedDay(day);
       toogleSelectedDay(date);
     }
   };
 
-  const handleRightMouseClick = (e:React.MouseEvent<HTMLDivElement>, date: Date) => {
+  const handleRightMouseClick = (date: Date) => (e:React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     if (isDateInRange(date, maxDate, minDate)) {
       openTodo!(date);
@@ -71,8 +71,8 @@ export const CalendarCell: FC<CalendarCellType> = ({ dayCell }) => {
     <div
       data-testid="calendar-cell"
       aria-hidden
-      onClick={() => handleDayClick(dayCell)}
-      onContextMenu={(e) => handleRightMouseClick(e, date)}
+      onClick={handleDayClick(dayCell)}
+      onContextMenu={handleRightMouseClick(date)}
       className={[
         classes.calendar_day,
         checkIsToday(date) ? classes.calendar_today : '',

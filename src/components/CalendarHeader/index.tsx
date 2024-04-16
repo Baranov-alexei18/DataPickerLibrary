@@ -11,18 +11,25 @@ export const CalendarHeader = () => {
   let labelHeader: ReactNode;
 
   const { state, functions } = useContext(CalendarContext) as CalendarType;
+  const {
+    monthesNames,
+    selectedYear,
+    selectedMonth,
+    mode,
+    selectedYearsInterval,
+  } = state;
 
   const setMode = (mode: 'days'|'monthes'|'years') => () => functions.setMode(mode);
 
   const handleArrow = (arrow: 'left' | 'right') => () => functions.onClickArrow(arrow);
 
-  switch (state.mode) {
+  switch (mode) {
     case 'days': {
       labelHeader = (
         <div data-testid="days-view" aria-hidden onClick={setMode('monthes')}>
-          {state.monthesNames[state.selectedMonth.monthIndex].month}
+          {monthesNames[selectedMonth.monthIndex].month}
           {' '}
-          {state.selectedYear}
+          {selectedYear}
         </div>
       );
       break;
@@ -30,7 +37,7 @@ export const CalendarHeader = () => {
     case 'monthes': {
       labelHeader = (
         <div data-testid="monthes-view" aria-hidden onClick={setMode('years')}>
-          {state.selectedYear}
+          {selectedYear}
         </div>
       );
       break;
@@ -38,9 +45,9 @@ export const CalendarHeader = () => {
     case 'years': {
       labelHeader = (
         <div data-testid="years-view">
-          {state.selectedYearsInterval[0]}
+          {selectedYearsInterval[0]}
           -
-          {state.selectedYearsInterval[state.selectedYearsInterval.length - 1]}
+          {selectedYearsInterval[selectedYearsInterval.length - 1]}
         </div>
       );
       break;
@@ -52,7 +59,7 @@ export const CalendarHeader = () => {
   }
 
   return (
-    <div className={classes.wrapper}>
+    <div data-testid="calendar-header" className={classes.wrapper}>
       <img
         src={Prev}
         alt="toLeft"

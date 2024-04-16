@@ -10,7 +10,12 @@ import classes from './styles.module.scss';
 export const TodoList: FC<TodoListProps> = ({ onClose, selectedDate }) => {
   const [inputValue, setInputValue] = useState('');
   const [todos, setTodos] = useState(
-    () => JSON.parse(localStorage.getItem(TODO_STORAGE_KEY)!),
+    () => {
+      if (localStorage.getItem(TODO_STORAGE_KEY)!) {
+        return JSON.parse(localStorage.getItem(TODO_STORAGE_KEY)!);
+      }
+      return [];
+    },
   );
 
   const handleEnterPress = useCallback((e: { key: string; }) => {
@@ -29,7 +34,7 @@ export const TodoList: FC<TodoListProps> = ({ onClose, selectedDate }) => {
     const dateKey = formatDateToString(selectedDate!);
 
     const newTodo = {
-      id: Date.now(),
+      id: Date.now().toString().slice(0, 10),
       text: inputValue,
       date: formatDateToString(selectedDate!),
     };
@@ -44,7 +49,7 @@ export const TodoList: FC<TodoListProps> = ({ onClose, selectedDate }) => {
     setInputValue('');
   };
 
-  const handleDeleteTodo = (dateKey: string, _id: number) => {
+  const handleDeleteTodo = (dateKey: string, _id: number) => () => {
     if (!todos[dateKey]) return;
 
     const updatedTodos = {
@@ -83,7 +88,9 @@ export const TodoList: FC<TodoListProps> = ({ onClose, selectedDate }) => {
             && todos[formatDateToString(selectedDate!)].map(({ id, text }: TodoItem) => (
               <li key={id}>
                 <span>{text}</span>
-                <button type="button" onClick={() => handleDeleteTodo(formatDateToString(selectedDate!), id)}>Delete</button>
+                <button type="button" onClick={handleDeleteTodo(formatDateToString(selectedDate!), id)}>
+                  Delete
+                </button>
               </li>
             ))}
       </ul>

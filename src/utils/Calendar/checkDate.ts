@@ -41,6 +41,14 @@ const isDateInRange = (date: Date, max?: Date, min?: Date, strict: boolean = fal
   return isDayInRange;
 };
 
+const isCurrentMonth = (monthIndex: number, selectedYear: number) => {
+  const curMonth = new Date().getMonth() === monthIndex;
+  const curYear = new Date().getFullYear() === selectedYear;
+  return curMonth && curYear;
+};
+
+const isCurrentYear = (year: number) => new Date().getFullYear() === year;
+
 const isAdditionalDay = (day: CalendarDay, monthIndex: number) => day.monthIndex !== monthIndex;
 
 const isSelectedDay = (day: CalendarDay, dateNow: Date) => checkDateIsEqual(day.date, dateNow);
@@ -49,6 +57,8 @@ export {
   checkDateIsEqual,
   checkIsToday,
   isAdditionalDay,
+  isCurrentMonth,
+  isCurrentYear,
   isDateInRange,
   isHoliday,
   isSelectedDay,

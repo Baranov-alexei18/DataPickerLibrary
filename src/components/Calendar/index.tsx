@@ -4,11 +4,11 @@ import { CalendarContext } from '@/hoc/withCalendarContext';
 import { CalendarContextType } from '@/types/calendar';
 
 import { Button } from '../Button';
+import { CalendarHeader } from '../CalendarHeader';
 import { DayView } from '../DayView';
 import { MonthView } from '../MonthView';
 import { YearView } from '../YearView';
 
-import { CalendarHeader } from './Header';
 import { CalendarProps } from './type';
 
 import classes from './styles.module.scss';
@@ -50,7 +50,7 @@ export const Calendar: FC<Partial<CalendarProps>> = () => {
   }
 
   return (
-    <div className={classes.calendar}>
+    <div data-testid="calendar" className={classes.calendar}>
       <CalendarHeader />
       {bodyView}
       <Button onClick={toggleClearDate}>Clear</Button>

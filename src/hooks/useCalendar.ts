@@ -1,8 +1,6 @@
 import React from 'react';
 
-import { DAYS_IN_WEEK } from '@/constants';
-import { UseCalendarType } from '@/types';
-import { CalendarType } from '@/types/calendar';
+import { DAYS_IN_WEEK, MONTHES_COUNT, START_DAY_WEEK } from '@/constants';
 import {
   createDate,
   createMonth,
@@ -11,11 +9,13 @@ import {
   getWeekDaysNames,
   getYearsInterval,
 } from '@/helpers';
+import { UseCalendarType } from '@/types';
+import { CalendarType } from '@/types/calendar';
 
 export const useCalendar = ({
   locale = 'en',
   selectedDate,
-  firstWeekDayNumber = 2,
+  firstWeekDayNumber = START_DAY_WEEK.MONDAY,
 }: UseCalendarType): CalendarType => {
   const [mode, setMode] = React.useState<'days' | 'monthes' | 'years'>('days');
   const [selectedDay, setSelectedDay] = React.useState(createDate({ date: selectedDate }));
@@ -29,7 +29,6 @@ export const useCalendar = ({
 
   const monthesNames = React.useMemo(() => getMonthesNames(locale), []);
   const weekDaysNames = React.useMemo(() => getWeekDaysNames(firstWeekDayNumber, locale), []);
-
   const days = React.useMemo(() => selectedMonth.createMonthDays(), [selectedMonth, selectedYear]);
 
   const calendarDays = React.useMemo(() => {
@@ -107,7 +106,7 @@ export const useCalendar = ({
         return setSelectedMonth(createMonth({ date: new Date(selectedYear - 1, 11), locale }));
       }
 
-      if (monthIndex === 12) {
+      if (monthIndex === MONTHES_COUNT) {
         const year = selectedYear + 1;
         setSelectedYear(year);
         if (!selectedYearsInterval.includes(year)) setSelectedYearsInterval(getYearsInterval(year));
