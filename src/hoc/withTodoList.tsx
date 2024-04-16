@@ -3,7 +3,9 @@ import React, { FC, useCallback, useState } from 'react';
 import { CalendarProps } from '@/components/Calendar/type';
 import { TodoList } from '@/components/TodoList';
 
-const withToDoList = (WrappedComponent: FC<CalendarProps>) => function Todo(props: CalendarProps) {
+export const withToDoList = (
+  WrappedComponent: FC<CalendarProps>,
+) => function Todo(props: CalendarProps) {
   const [isTodoOpen, setIsTodoOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
@@ -24,4 +26,3 @@ const withToDoList = (WrappedComponent: FC<CalendarProps>) => function Todo(prop
     </>
   );
 };
-export { withToDoList };

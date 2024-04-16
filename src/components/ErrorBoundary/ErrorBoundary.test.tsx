@@ -16,13 +16,13 @@ describe('ErrorBoundary', () => {
   });
 
   test('renders error message when an error is thrown', () => {
-    const ErrorThrower = () => {
+    const ErrorComponent = () => {
       throw new Error('Test error');
     };
 
     const { getByText } = render(
       <ErrorBoundary>
-        <ErrorThrower />
+        <ErrorComponent />
       </ErrorBoundary>,
     );
 
