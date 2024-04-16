@@ -21,28 +21,38 @@
   ],
   "rules": {
     "react/react-in-jsx-scope": "off",
-    "no-unused-vars": "off",
     "import/no-unresolved": "off",
     "import/extensions": "off",
     "import/no-extraneous-dependencies": "off",
-    "no-shadow": "off",
-    "no-param-reassign": "off",
-    "no-return-assign": "off",
-    "consistent-return": "off",
-    "class-methods-use-this": "off",
     "no-unused-expressions": "off",
+    "no-unused-vars": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".tsx"] }],
     "react/no-unused-prop-types": "off",
     "import/prefer-default-export": ["off", { "target": "any" }],
-    "simple-import-sort/imports": "error",
+    "simple-import-sort/imports": [
+      "error",
+      {
+        "groups": [
+          ["^react", "^@?\\w"],
+          ["^(@|components)(/.*|$)"],
+          ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+          ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+          ["^\\u0000"],
+          ["^.+\\.?(scss)$"]
+        ]
+      }
+    ],
     "simple-import-sort/exports": "error",
-    "import/first": "error",
-    "import/newline-after-import": "error",
-    "import/no-duplicates": "error",
     "react/function-component-definition": [2, { "namedComponents": "arrow-function" }],
+    "import/no-import-module-exports": "off",
     "camelcase": "off",
     "react/jsx-props-no-spreading": "off",
-    "no-plusplus":"off"
+    "no-plusplus":"off",
+    "no-use-before-define": "off",
+    "class-methods-use-this": "off",
+    "consistent-return": "off",
+    "no-shadow": "off",
+    "no-undef": "off"
   },
   "ignorePatterns": ["node_modules/", "dist/", "src/stories"]
 }

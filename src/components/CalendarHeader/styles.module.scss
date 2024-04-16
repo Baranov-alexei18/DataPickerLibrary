@@ -1,0 +1,13 @@
+@import '../../assets/style/variables.scss';
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin: 8px 4px;
+    @include fontSize($font-size-sm, 700);
+    color: $dark-color;
+
+    span, img {
+      cursor: pointer;
+    }
+  }

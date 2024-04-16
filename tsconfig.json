@@ -10,11 +10,11 @@
     "moduleResolution":"node",
     "baseUrl": "./",
     "paths": {
-      "#/*": ["src/*"]
+      "@/*": ["src/*"]
     },
-    "types": ["@storybook/react"]
+    "types": ["@storybook/react", "@svgr/webpack", "jest"]
   },
-  "include": [
-    "src/**/*"
-  ]
+  "exclude": [
+    "node_modules",
+  ], 
 }

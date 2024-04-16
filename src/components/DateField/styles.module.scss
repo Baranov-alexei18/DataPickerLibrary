@@ -1,0 +1,30 @@
+@import "../../assets/style/variables.scss";
+
+.datefield_wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 250px;
+    height: 42px;
+    box-sizing: border-box;
+    font-family: $font-family-main;
+    border: 1px solid $grey-base-color;
+    border-radius: $base-border-radius;
+    padding: 16px;
+
+    img {
+        cursor: pointer;
+    }
+}
+
+.date_input {
+    @include fontSize(15px, 400);
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 1px 0 0 8px;
+
+    ::placeholder {
+        color: $grey-base-color;
+    }
+}

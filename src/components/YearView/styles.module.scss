@@ -1,0 +1,30 @@
+@import "../../assets/style/variables.scss";
+
+.calendar_today {
+    background-color: $grey-light-color;
+}
+
+.calendar_item {
+    @include flex-center;
+    cursor: pointer;
+    padding: 16px 0px;
+    border-radius: 8px;
+
+    &:hover {
+        background-color: $primary-hover-color;
+    }
+}
+
+.calendar_year {
+    @include fontSize($font-size-sm, 600);
+    display: grid;
+    text-align: center;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+}
+
+.calendar_unchoosable_year {
+    font-weight: 300;
+    padding: 16px 20px;
+    color: $grey-base-color;
+}

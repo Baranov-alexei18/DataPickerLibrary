@@ -1,0 +1,16 @@
+@import "../../assets/style/variables.scss";
+
+
+.datepicker_wrapper {
+    position: relative;
+    width: max-content;
+
+    .error{
+        border: 1px solid $error-color;
+    }
+    
+    .error_message {
+        text-align: center;
+        color: $error-color;
+    }
+}

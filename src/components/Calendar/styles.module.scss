@@ -1,0 +1,21 @@
+@import "../../assets/style/variables.scss";
+
+.calendar {
+  position: absolute;
+  top: calc(100% + 8px);
+  width: 250px;
+  max-width: 250px;
+  box-sizing: border-box;
+  border: 1px solid $grey-base-color;
+  border-radius: $base-border-radius;
+  padding: 4px;
+  background-color: $white-color;
+  z-index: 10;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}

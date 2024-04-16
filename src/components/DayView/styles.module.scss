@@ -1,0 +1,17 @@
+@import "../../assets/style/variables.scss";
+
+.week_names {
+    @include fontSize($font-size-sm, 700);
+    height: $size-base-cell;
+    display: grid;
+    text-align: center;
+    align-items: center;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.table_days {
+    @include fontSize($font-size-xs, 600);
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: 1fr;
+}
