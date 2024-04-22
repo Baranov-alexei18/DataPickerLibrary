@@ -3,6 +3,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace'; // Добавленный плагин
 import typescript from '@rollup/plugin-typescript';
+import url from '@rollup/plugin-url';
 import svgr from '@svgr/rollup';
 import path from 'path';
 import babel from 'rollup-plugin-babel'; // Добавленный плагин
@@ -17,8 +18,9 @@ export default {
   output: {
     file: 'dist/bundle.js',
     format: 'cjs',
-    globals: { react: 'React' },
+    sourcemap: true,
   },
+  external: ['react'],
   plugins: [
     postcss({
       alias: { find: '@', replacement: path.resolve(__dirname, 'src') },
@@ -53,5 +55,6 @@ export default {
     typescript(),
     commonjs(),
     dotenv,
+    url({ include: ['**/*.svg'], limit: Infinity }),
   ],
 };

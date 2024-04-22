@@ -1,5 +1,14 @@
 @import "../../assets/style/variables.scss";
 
+.calendar_year {
+    @include fontSize($font-size-sm, 600);
+    display: grid;
+    text-align: center;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    color: $dark-color;
+}
+
 .calendar_today {
     background-color: $grey-light-color;
 }
@@ -13,14 +22,6 @@
     &:hover {
         background-color: $primary-hover-color;
     }
-}
-
-.calendar_year {
-    @include fontSize($font-size-sm, 600);
-    display: grid;
-    text-align: center;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(4, 1fr);
 }
 
 .calendar_unchoosable_year {

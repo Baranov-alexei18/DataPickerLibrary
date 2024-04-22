@@ -3,6 +3,7 @@
 .wrappper {
   cursor: pointer;
   width: calc(100% + 8px);
+  max-width: calc(100% + 8px);
   color: $dark-color;
   background-color: inherit;
   font-size: $font-size-md;

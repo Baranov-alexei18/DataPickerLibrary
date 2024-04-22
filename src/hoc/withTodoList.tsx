@@ -7,7 +7,7 @@ export const withToDoList = (
   WrappedComponent: FC<CalendarProps>,
 ) => function Todo(props: CalendarProps) {
   const [isTodoOpen, setIsTodoOpen] = useState(false);
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
 
   const toogleTodo = (date: Date) => {
     setIsTodoOpen(true);
@@ -16,7 +16,7 @@ export const withToDoList = (
 
   const handleClose = useCallback(() => {
     setIsTodoOpen(false);
-    setSelectedDate(null);
+    setSelectedDate(new Date());
   }, []);
 
   return (

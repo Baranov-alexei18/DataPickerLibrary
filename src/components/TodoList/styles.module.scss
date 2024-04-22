@@ -1,6 +1,7 @@
 @import "../../assets/style/variables.scss";
 
 .wrapper {
+    @include fontSize($font-size-sm, 400);
     position: absolute;
     box-sizing: border-box;
     top: calc(100% + 8px);
@@ -10,6 +11,7 @@
     background-color: $light-color;
     border: 1px solid $grey-base-color;
     border-radius: $base-border-radius;
+    color: $dark-color;
     overflow-y: auto;
     z-index: 10;
 

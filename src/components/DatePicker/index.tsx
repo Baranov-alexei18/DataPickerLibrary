@@ -25,7 +25,7 @@ export const DatePicker: React.FC<Partial<DatePickerProps>> = (
   },
 ) => {
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
-  const [inputValue, setInputValue] = useState(value);
+  const [inputValue, setInputValue] = useState(value || '');
   const [error, setError] = useState('');
 
   const handleInputClick = useCallback(() => {
@@ -67,7 +67,7 @@ export const DatePicker: React.FC<Partial<DatePickerProps>> = (
 
   const configCalendar: CalendarServiceType = {
     isOpen: isCalendarOpen,
-    selectedDate: inputValue!,
+    selectedDate: inputValue || formatDateToString(new Date()),
     selectDate: (selectedDate: Date) => {
       handleDateSelect(selectedDate);
     },

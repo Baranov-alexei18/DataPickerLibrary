@@ -14,7 +14,7 @@ import { CalendarType } from '@/types/calendar';
 
 export const useCalendar = ({
   locale = 'en',
-  selectedDate,
+  selectedDate = new Date(),
   firstWeekDayNumber = START_DAY_WEEK.MONDAY,
 }: UseCalendarType): CalendarType => {
   const [mode, setMode] = React.useState<'days' | 'monthes' | 'years'>('days');
