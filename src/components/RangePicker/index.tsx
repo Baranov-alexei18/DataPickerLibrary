@@ -16,6 +16,7 @@ export const RangePicker: React.FC<Partial<DatePickerProps>> = (
     isFirstWeekDayMonday = true,
     holiday = false,
     holidayColor = 'inherit',
+    onChange,
   },
 ) => {
   const [selectedRange, setSelectedRange] = useState<[Date | null, Date | null]>([null, null]);
@@ -32,8 +33,12 @@ export const RangePicker: React.FC<Partial<DatePickerProps>> = (
 
     if (!endRange && date > startRange) {
       setSelectedRange([startRange, date]);
+      onChange!(`${formatDateToString(selectedRange[0]!)} - ${formatDateToString(date)}`);
+      closeCalendar();
     } else if (!endRange && date < startRange) {
       setSelectedRange([date, startRange]);
+      onChange!(`${formatDateToString(date!)} - ${formatDateToString(selectedRange[1]!)}`);
+      closeCalendar();
     } else {
       setSelectedRange([date, null]);
     }

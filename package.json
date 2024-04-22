@@ -1,6 +1,6 @@
 {
   "name": "@alexeika/date-picker-library",
-  "version": "1.0.3",
+  "version": "1.0.36",
   "description": "Datepicker",
   "main": "dist/bundle.js",
   "author": "Alexei Baranov <alexei-baranov18@mail.ru>",
@@ -25,6 +25,7 @@
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-replace": "^5.0.5",
     "@rollup/plugin-typescript": "^11.1.6",
+    "@rollup/plugin-url": "^8.0.2",
     "@storybook/addon-essentials": "^8.0.5",
     "@storybook/addon-interactions": "^8.0.5",
     "@storybook/addon-links": "^8.0.5",
@@ -97,12 +98,13 @@
     "typescript": "^5.4.3"
   },
   "peerDependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "rollup-plugin-sourcemaps": "^0.6.3"
   },
   "husky": {
     "hooks": {

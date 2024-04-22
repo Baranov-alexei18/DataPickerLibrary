@@ -7,6 +7,7 @@
     text-align: center;
     align-items: center;
     grid-template-columns: repeat(7, 1fr);
+    color: $dark-color;
 }
 
 .table_days {
@@ -14,4 +15,5 @@
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: 1fr;
+    color: $dark-color;
 }

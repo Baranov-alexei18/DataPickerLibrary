@@ -16,7 +16,7 @@ export const MonthView = () => {
   };
 
   return (
-    <div className={classes.calendar_year}>
+    <div className={classes.calendar_month}>
       {monthesNames.map(({ monthIndex, monthShort, month }) => (
         <div
           key={month}
