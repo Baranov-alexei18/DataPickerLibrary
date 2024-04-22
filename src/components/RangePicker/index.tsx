@@ -34,11 +34,9 @@ export const RangePicker: React.FC<Partial<DatePickerProps>> = (
     if (!endRange && date > startRange) {
       setSelectedRange([startRange, date]);
       onChange!(`${formatDateToString(selectedRange[0]!)} - ${formatDateToString(date)}`);
-      closeCalendar();
     } else if (!endRange && date < startRange) {
       setSelectedRange([date, startRange]);
-      onChange!(`${formatDateToString(date!)} - ${formatDateToString(selectedRange[1]!)}`);
-      closeCalendar();
+      onChange!(`${formatDateToString(date!)} - ${formatDateToString(startRange!)}`);
     } else {
       setSelectedRange([date, null]);
     }
@@ -46,7 +44,6 @@ export const RangePicker: React.FC<Partial<DatePickerProps>> = (
 
   const handleClearRange = useCallback(() => {
     setSelectedRange([null, null]);
-    closeCalendar();
   }, []);
 
   const handleInputClick = useCallback(() => {

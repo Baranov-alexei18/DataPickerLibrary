@@ -36,7 +36,6 @@ export const DatePicker: React.FC<Partial<DatePickerProps>> = (
     onChange!('');
     setInputValue('');
     setError('');
-    setIsCalendarOpen(false);
   }, []);
 
   const handleChange = (values: string) => {
@@ -62,7 +61,6 @@ export const DatePicker: React.FC<Partial<DatePickerProps>> = (
     const isoString = formatDateToString(selectedDate);
     setInputValue(isoString);
     onChange!(isoString);
-    setIsCalendarOpen(false);
   };
 
   const configCalendar: CalendarServiceType = {

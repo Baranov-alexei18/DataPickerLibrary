@@ -1,0 +1,34 @@
+@import "../../assets/style/variables.scss";
+
+.tooltipWrapper {
+    position: relative;
+    display: inline-block;
+    margin-left: 8px;
+    padding: 0 5px;
+    border-radius: $base-border-radius;
+    background-color: $grey-light-color;
+
+    .questionIcon {
+      display: inline-block;
+      cursor: pointer;
+    }
+  
+    .tooltipContent {
+      position: absolute;
+      width: 120px;
+      background-color: #fff;
+      border: 1px solid $grey-base-color;
+      border-radius: $base-border-radius;
+      padding: 5px;
+      box-shadow: 0 2px 4px $grey-base-color;
+      font-size: $font-size-sm;
+      font-weight: 400;
+      z-index: 100;
+      display: none;
+  
+      &.visible {
+        display: block;
+      }
+    }
+  }
+  

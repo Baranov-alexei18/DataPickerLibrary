@@ -5,6 +5,8 @@ import Prev from '@/assets/svg/Prev.svg';
 import { CalendarContext } from '@/hoc/withCalendarContext';
 import { CalendarType } from '@/types/calendar';
 
+import Tooltip from '../Tooltip';
+
 import classes from './styles.module.scss';
 
 export const CalendarHeader = () => {
@@ -30,6 +32,7 @@ export const CalendarHeader = () => {
           {monthesNames[selectedMonth.monthIndex].month}
           {' '}
           {selectedYear}
+          <Tooltip />
         </div>
       );
       break;

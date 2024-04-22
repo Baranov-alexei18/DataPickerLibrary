@@ -3,7 +3,10 @@
   "version": "1.0.36",
   "description": "Datepicker",
   "main": "dist/bundle.js",
-  "author": "Alexei Baranov <alexei-baranov18@mail.ru>",
+  "author": {
+    "name": "Alexei Baranov",
+    "email": "alexei-baranov18@mail.ru"
+  },
   "license": "MIT",
   "scripts": {
     "build": "rollup -c --bundleConfigAsCjs",
@@ -11,7 +14,8 @@
     "build-storybook": "storybook build",
     "lint": "eslint . --fix",
     "commit": "cz",
-    "test": "jest"
+    "test": "jest",
+    "chromatic": "npx chromatic --project-token=chpt_08cf8ffb04bab26"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.24.1",
@@ -54,6 +58,7 @@
     "@typescript-eslint/eslint-plugin": "^7.6.0",
     "@typescript-eslint/parser": "^7.6.0",
     "babel-jest": "^29.7.0",
+    "chromatic": "^11.3.0",
     "commitizen": "^4.3.0",
     "css-loader": "^6.10.0",
     "cssnano": "^6.1.2",
@@ -100,11 +105,6 @@
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
-  },
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "rollup-plugin-sourcemaps": "^0.6.3"
   },
   "husky": {
     "hooks": {
