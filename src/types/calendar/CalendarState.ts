@@ -1,20 +1,6 @@
-export type ModeCalendar = 'days' | 'monthes' | 'years'
+import { CalendarDay } from './calendarDay';
 
-export type CalendarDay = {
-    date: Date;
-    dayNumber: number;
-    day: string;
-    dayNumberInWeek: number;
-    dayShort: string;
-    year: number;
-    yearShort: string;
-    month: string;
-    monthShort: string;
-    monthNumber: number;
-    monthIndex: number;
-    timestamp: number;
-    week: number;
-}
+export type ModeCalendar = 'days' | 'monthes' | 'years'
 
 export type CalendarStateType = {
     mode: ModeCalendar,
