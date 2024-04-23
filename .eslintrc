@@ -45,6 +45,8 @@
     "simple-import-sort/exports": "error",
     "react/function-component-definition": [2, { "namedComponents": "arrow-function" }],
     "import/no-import-module-exports": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
     "camelcase": "off",
     "react/jsx-props-no-spreading": "off",
     "no-plusplus":"off",
