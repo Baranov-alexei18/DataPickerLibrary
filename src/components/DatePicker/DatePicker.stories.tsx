@@ -24,14 +24,3 @@ Default.args = {
   holiday: false,
   holidayColor: '#a0f0a0',
 };
-
-export const Holiday = Template.bind({});
-Holiday.args = {
-  value: '',
-  onChange: () => { },
-  isFirstWeekDayMonday: true,
-  minDate: new Date(2000, 4, 4),
-  maxDate: new Date(2024, 10, 11),
-  holiday: true,
-  holidayColor: '#a0f0a0',
-};

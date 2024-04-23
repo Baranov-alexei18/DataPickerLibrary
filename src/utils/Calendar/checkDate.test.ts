@@ -1,5 +1,5 @@
 import { mockHolidays } from '@/constants/mocks/mock';
-import { CalendarDay } from '@/types/calendar/calendarState';
+import { CalendarDay } from '@/types/calendar/calendarDay';
 
 import {
   checkDateIsEqual,

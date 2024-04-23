@@ -27,7 +27,7 @@ export const DateField: React.FC<DateFieldProps> = ({
       <input
         type="text"
         className={classes.date_input}
-        value={value!.length > VALIDE_DATE_LENGTH ? formatDateToString(new Date(value)) : value}
+        value={value!.length > VALIDE_DATE_LENGTH ? formatDateToString(new Date(value!)) : value}
         placeholder="Choose Date"
         onFocus={onFocus}
         onChange={handleChange}

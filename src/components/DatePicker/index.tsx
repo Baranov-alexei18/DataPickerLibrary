@@ -41,7 +41,7 @@ export const DatePicker: React.FC<Partial<DatePickerProps>> = (
   const handleChange = (values: string) => {
     const valueMask = getMaskForDateField(values);
     const err = getErrorMessage(formatStringToDate(validateDate(valueMask)), maxDate, minDate);
-    setInputValue(validateDate(valueMask));
+    // setInputValue(validateDate(valueMask));
 
     if (values.length < VALIDE_DATE_LENGTH) {
       return;
@@ -65,7 +65,7 @@ export const DatePicker: React.FC<Partial<DatePickerProps>> = (
 
   const configCalendar: CalendarServiceType = {
     isOpen: isCalendarOpen,
-    selectedDate: inputValue || formatDateToString(new Date()),
+    selectedDate: inputValue,
     selectDate: (selectedDate: Date) => {
       handleDateSelect(selectedDate);
     },

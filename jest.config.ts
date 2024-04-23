@@ -9,7 +9,7 @@ module.exports = {
     '\\.scss$': 'jest-transform-stub',
   },
   moduleNameMapper: {
-    '\\.scss$': path.resolve(__dirname, 'src', 'assets', 'style', 'index.scss'),
+    '\\.(scss)$': path.resolve(__dirname, 'src', 'theme', 'index.scss'),
     '\\.svg$': path.resolve(__dirname, 'src', 'constants', 'mocks', 'mock.ts'),
     '^@/(.*)$': path.resolve(__dirname, 'src', '$1'),
   },
