@@ -12,14 +12,42 @@ $orange-color: #edb620;
 
 $font-family-main: 'Open sans', sans-serif;
 
-$base-border-radius: 8px;
+$border-radius-none: 0px;
+$border-radius-base: 8px;
+$border-radius-half: 50%;
 
 $font-size-xs: 13px;
 $font-size-sm: 14px;
 $font-size-md: 15px;
 $font-size-lg: 16px;
 
+
+$font-weight-light: 400;
+$font-weight-base: 500;
+$font-weight-normal: 600;
+$font-weight-bold: 700;
+
+$spacing: 0;
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+
+$negative-spacing-xs: -4px;
+$negative-spacing-sm: -8px;
+$negative-spacing-md: -16px;
+$negative-spacing-lg: -24px;
+$negative-spacing-xl: -32px;
+
+$opacity-low: 0.3;
+
 $size-base-cell: 32px;
+
+$z-index-low: 1;
+$z-index-medium: 10;
+$z-index-high: 100;
+$z-index-top: 1000;
 
 @mixin fontSize($font-size, $font-weight) {
     font-size: $font-size;

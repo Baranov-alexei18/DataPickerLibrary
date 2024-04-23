@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 
 import { CalendarProps } from '@/components/Calendar/type';
-import { TodoLocalstorageType } from '@/types';
+import { TodoLocalstorageType } from '@/types/todo';
 
 import { withToDoList } from './withTodoList';
 

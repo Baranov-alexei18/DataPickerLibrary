@@ -3,9 +3,9 @@ import React, { useCallback, useState } from 'react';
 import CalendarService from '@/services/serviceCalendar';
 import { formatDateToString } from '@/utils/Calendar/getFormatDate';
 
-import { CalendarServiceType } from '../Calendar/type';
+import { CalendarServiceType } from '../Calendar/types';
 import { DateField } from '../DateField';
-import { DatePickerProps } from '../DatePicker/type';
+import { DatePickerProps } from '../DatePicker/types';
 
 import classes from './styles.module.scss';
 

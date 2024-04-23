@@ -1,4 +1,4 @@
-import { CalendarServiceType } from '@/components/Calendar/type';
+import { CalendarServiceType } from '@/components/Calendar/types';
 import { CalendarContextType } from '@/types/calendar';
 
 export const mockHolidays = [

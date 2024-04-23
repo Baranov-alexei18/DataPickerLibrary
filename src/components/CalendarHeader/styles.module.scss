@@ -1,10 +1,9 @@
-@import '../../assets/style/variables.scss';
+@import '../../theme/variables.scss';
 
 .wrapper {
-    display: flex;
-    justify-content: space-between;
-    margin: 8px 4px;
-    @include fontSize($font-size-sm, 700);
+    @include flex-space-between();
+    @include fontSize($font-size-sm, $font-weight-bold);
+    margin: $spacing-sm $spacing-xs;
     color: $dark-color;
 
     span, img {

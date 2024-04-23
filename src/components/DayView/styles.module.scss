@@ -1,7 +1,7 @@
-@import "../../assets/style/variables.scss";
+@import "../../theme/variables.scss";
 
 .week_names {
-    @include fontSize($font-size-sm, 700);
+    @include fontSize($font-size-sm, $font-weight-bold);
     height: $size-base-cell;
     display: grid;
     text-align: center;
@@ -11,7 +11,7 @@
 }
 
 .table_days {
-    @include fontSize($font-size-xs, 600);
+    @include fontSize($font-size-xs, $font-weight-normal);
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: 1fr;

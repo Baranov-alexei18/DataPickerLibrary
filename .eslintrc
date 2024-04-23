@@ -56,5 +56,5 @@
     "no-shadow": "off",
     "no-undef": "off"
   },
-  "ignorePatterns": ["node_modules/", "dist/", "src/stories"]
+  "ignorePatterns": ["node_modules/", "dist/", "src/stories", "storybook-static"]
 }

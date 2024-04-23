@@ -1,12 +1,11 @@
-@import "../../assets/style/variables.scss";
+@import "../../theme/variables.scss";
 
 .calendar_day {
     @include flex-center;
+    cursor: pointer;
     position: relative;
     height: $size-base-cell;
-    border-radius: $base-border-radius;
-
-    cursor: pointer;
+    border-radius: $border-radius-base;
 
     &:hover {
         background-color: $primary-hover-color;
@@ -22,9 +21,9 @@
 .disabled_day {
     cursor: default;
     color: $dark-color;
-    opacity: 0.3;
-    padding: 0;
-    margin: 0;
+    opacity: $opacity-low;
+    padding: $spacing;
+    margin: $spacing;
 
     &:hover {
         background-color: $primary-hover-color;
@@ -40,8 +39,8 @@
 .calendar_item {
     @include flex-center;
     cursor: pointer;
-    padding: 16px 0px;
-    border-radius: 8px;
+    padding: $spacing-md $spacing;
+    border-radius: $border-radius-base;
 
     &:hover {
         background-color: $primary-hover-color;
@@ -49,7 +48,7 @@
 }
 
 .calendar_year {
-    @include fontSize($font-size-sm, 600);
+    @include fontSize($font-size-sm, $font-weight-normal);
     display: grid;
     text-align: center;
     grid-template-columns: repeat(3, 1fr);
@@ -57,28 +56,28 @@
 }
 
 .calendar_unchoosable_year {
-    font-weight: 300;
-    padding: 16px 20px;
+    font-weight: $font-weight-light;
+    padding: $spacing-md;
     color: $grey-base-color;
 }
 
 .start_range {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    background-color: $primary-color;
+    border-top-right-radius: $border-radius-none;
+    border-bottom-right-radius: $border-radius-none;
+    background-color: $primary-color !important;
     color: $light-color;
 }
 
 .end_range {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    background-color: $primary-color;
+    border-top-left-radius: $border-radius-none;
+    border-bottom-left-radius: $border-radius-none;
+    background-color: $primary-color !important;
     color: $light-color;
 }
 
-.selected_range {
-    border-radius: 0;
-    background-color: $primary-light-color;
+.select_range {
+    border-radius: $border-radius-none;
+    background-color: $primary-light-color !important;
     color: $primary-color;
 }
 
@@ -88,12 +87,12 @@
 
 .has_todolist {
     position: absolute;
-    top: 4px;
-    right: 4px;
-    width: 6px;
-    height: 6px;
+    top: $spacing-xs;
+    right: $spacing-xs;
+    width: $spacing-xs;
+    height: $spacing-xs;
     background-color: $orange-color;
-    border-radius: 50%;
+    border-radius: $border-radius-half;
 }
 
 .select_day {

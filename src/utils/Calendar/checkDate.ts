@@ -1,6 +1,6 @@
 import { DAY_NUMBER_WEEK } from '@/constants';
-import { holidayApiType } from '@/types';
-import { CalendarDay } from '@/types/calendar/CalendarState';
+import { CalendarDay } from '@/types/calendar/calendarState';
+import { holidayApiType } from '@/types/todo';
 
 const checkIsToday = (date: Date) => {
   const today = new Date();

@@ -1,7 +1,7 @@
-@import "../../assets/style/variables.scss";
+@import "../../theme/variables.scss";
 
 .calendar_year {
-    @include fontSize($font-size-sm, 600);
+    @include fontSize($font-size-sm, $font-weight-normal);
     display: grid;
     text-align: center;
     grid-template-columns: repeat(3, 1fr);
@@ -16,8 +16,8 @@
 .calendar_item {
     @include flex-center;
     cursor: pointer;
-    padding: 16px 0px;
-    border-radius: 8px;
+    padding: $spacing-md $spacing;
+    border-radius: $border-radius-base;
 
     &:hover {
         background-color: $primary-hover-color;
@@ -25,7 +25,7 @@
 }
 
 .calendar_unchoosable_year {
-    font-weight: 300;
-    padding: 16px 20px;
+    font-weight: $font-weight-light;
+    padding: $spacing-md;
     color: $grey-base-color;
 }

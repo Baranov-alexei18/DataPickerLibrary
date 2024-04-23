@@ -9,8 +9,7 @@ import {
   getWeekDaysNames,
   getYearsInterval,
 } from '@/helpers';
-import { UseCalendarType } from '@/types';
-import { CalendarType } from '@/types/calendar';
+import { CalendarType, UseCalendarType } from '@/types/calendar';
 
 export const useCalendar = ({
   locale = 'en',

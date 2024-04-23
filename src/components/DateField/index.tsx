@@ -1,11 +1,11 @@
 import React from 'react';
 
-import CalendarSVG from '@/assets/svg/Calendar.svg';
-import ClearIconSVG from '@/assets/svg/Clear.svg';
+import CalendarSVG from '@/assets/image/icons/Calendar.svg';
+import ClearIconSVG from '@/assets/image/icons/Clear.svg';
 import { VALIDE_DATE_LENGTH } from '@/constants';
 import { formatDateToString } from '@/utils/Calendar/getFormatDate';
 
-import { DateFieldProps } from './type';
+import { DateFieldProps } from './types';
 
 import classes from './styles.module.scss';
 
@@ -27,7 +27,7 @@ export const DateField: React.FC<DateFieldProps> = ({
       <input
         type="text"
         className={classes.date_input}
-        value={value!.length > VALIDE_DATE_LENGTH ? formatDateToString(new Date(value!)) : value}
+        value={value!.length > VALIDE_DATE_LENGTH ? formatDateToString(new Date(value)) : value}
         placeholder="Choose Date"
         onFocus={onFocus}
         onChange={handleChange}

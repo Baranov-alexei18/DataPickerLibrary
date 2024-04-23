@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useMemo } from 'react';
 
-import { CalendarProps } from '@/components/Calendar/type';
+import { CalendarProps } from '@/components/Calendar/types';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { START_DAY_WEEK, VALIDE_DATE_LENGTH } from '@/constants';
 import { useCalendar } from '@/hooks/useCalendar';

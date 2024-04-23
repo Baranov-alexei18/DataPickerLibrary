@@ -1,6 +1,6 @@
 import React, { FC, useCallback, useState } from 'react';
 
-import { CalendarProps } from '@/components/Calendar/type';
+import { CalendarProps } from '@/components/Calendar/types';
 import { TodoList } from '@/components/TodoList';
 
 export const withToDoList = (

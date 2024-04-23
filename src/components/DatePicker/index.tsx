@@ -7,9 +7,9 @@ import { formatDateToString, formatStringToDate } from '@/utils/Calendar/getForm
 import { getErrorMessage, getMaskForDateField } from '@/utils/datefield';
 import { validateDate } from '@/utils/validationDate';
 
-import { CalendarServiceType } from '../Calendar/type';
+import { CalendarServiceType } from '../Calendar/types';
 
-import { DatePickerProps } from './type';
+import { DatePickerProps } from './types';
 
 import classes from './styles.module.scss';
 

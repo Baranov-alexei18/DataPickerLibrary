@@ -3,7 +3,7 @@ import React, { FC, useCallback, useState } from 'react';
 import { TODO_STORAGE_KEY } from '@/constants';
 import { formatDateToString } from '@/utils/Calendar/getFormatDate';
 
-import { TodoItem, TodoListProps } from './type';
+import { TodoItem, TodoListProps } from './types';
 
 import classes from './styles.module.scss';
 

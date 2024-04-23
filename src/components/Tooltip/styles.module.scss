@@ -1,30 +1,29 @@
-@import "../../assets/style/variables.scss";
+@import "../../theme/variables.scss";
 
-.tooltipWrapper {
+.wrapper {
     position: relative;
     display: inline-block;
-    margin-left: 8px;
-    padding: 0 5px;
-    border-radius: $base-border-radius;
+    border-radius: $border-radius-base;
     background-color: $grey-light-color;
+    margin-left: $spacing-sm;
+    padding: $spacing $spacing-xs;
 
     .questionIcon {
       display: inline-block;
       cursor: pointer;
     }
   
-    .tooltipContent {
+    .content {
+      @include fontSize($font-size-sm, $font-weight-light);
       position: absolute;
-      width: 120px;
-      background-color: #fff;
-      border: 1px solid $grey-base-color;
-      border-radius: $base-border-radius;
-      padding: 5px;
-      box-shadow: 0 2px 4px $grey-base-color;
-      font-size: $font-size-sm;
-      font-weight: 400;
-      z-index: 100;
       display: none;
+      width: 120px;
+      background-color: $white-color;
+      border: 1px solid $grey-base-color;
+      border-radius: $border-radius-base;
+      padding: $spacing-xs;
+      box-shadow: $spacing $spacing-xs $spacing-xs $grey-base-color;
+      z-index: $z-index-high;
   
       &.visible {
         display: block;
