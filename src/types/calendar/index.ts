@@ -1,5 +1,5 @@
-import { CalendarFunctionsType } from './CalendarFunctions';
-import { CalendarStateType } from './CalendarState';
+import { CalendarFunctionsType } from './calendarFunction';
+import { CalendarStateType } from './calendarState';
 
 export type CalendarType = {
     state: CalendarStateType,
@@ -18,4 +18,10 @@ export type CalendarContextType = {
     selectedRange: [Date | null, Date | null];
     isOpen: boolean;
     clearDate: () => void;
+}
+
+export type UseCalendarType = {
+    locale?: string;
+    selectedDate: Date;
+    firstWeekDayNumber?: number;
 }

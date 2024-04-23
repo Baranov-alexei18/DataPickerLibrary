@@ -7,9 +7,9 @@ import { formatDateToString, formatStringToDate } from '@/utils/Calendar/getForm
 import { getErrorMessage, getMaskForDateField } from '@/utils/datefield';
 import { validateDate } from '@/utils/validationDate';
 
-import { CalendarServiceType } from '../Calendar/type';
+import { CalendarServiceType } from '../Calendar/types';
 
-import { DatePickerProps } from './type';
+import { DatePickerProps } from './types';
 
 import classes from './styles.module.scss';
 
@@ -36,13 +36,12 @@ export const DatePicker: React.FC<Partial<DatePickerProps>> = (
     onChange!('');
     setInputValue('');
     setError('');
-    setIsCalendarOpen(false);
   }, []);
 
   const handleChange = (values: string) => {
     const valueMask = getMaskForDateField(values);
     const err = getErrorMessage(formatStringToDate(validateDate(valueMask)), maxDate, minDate);
-    setInputValue(validateDate(valueMask));
+    // setInputValue(validateDate(valueMask));
 
     if (values.length < VALIDE_DATE_LENGTH) {
       return;
@@ -62,12 +61,11 @@ export const DatePicker: React.FC<Partial<DatePickerProps>> = (
     const isoString = formatDateToString(selectedDate);
     setInputValue(isoString);
     onChange!(isoString);
-    setIsCalendarOpen(false);
   };
 
   const configCalendar: CalendarServiceType = {
     isOpen: isCalendarOpen,
-    selectedDate: inputValue || formatDateToString(new Date()),
+    selectedDate: inputValue,
     selectDate: (selectedDate: Date) => {
       handleDateSelect(selectedDate);
     },

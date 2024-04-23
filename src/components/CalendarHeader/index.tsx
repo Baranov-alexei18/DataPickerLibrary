@@ -1,62 +1,18 @@
-import React, { ReactNode, useContext } from 'react';
+import React, { useContext } from 'react';
 
-import Next from '@/assets/svg/Next.svg';
-import Prev from '@/assets/svg/Prev.svg';
+import Next from '@/assets/image/icons/Next.svg';
+import Prev from '@/assets/image/icons/Prev.svg';
 import { CalendarContext } from '@/hoc/withCalendarContext';
 import { CalendarType } from '@/types/calendar';
+
+import { LabelHeader } from '../LabelHeader';
 
 import classes from './styles.module.scss';
 
 export const CalendarHeader = () => {
-  let labelHeader: ReactNode;
-
-  const { state, functions } = useContext(CalendarContext) as CalendarType;
-  const {
-    monthesNames,
-    selectedYear,
-    selectedMonth,
-    mode,
-    selectedYearsInterval,
-  } = state;
-
-  const setMode = (mode: 'days'|'monthes'|'years') => () => functions.setMode(mode);
+  const { functions } = useContext(CalendarContext) as CalendarType;
 
   const handleArrow = (arrow: 'left' | 'right') => () => functions.onClickArrow(arrow);
-
-  switch (mode) {
-    case 'days': {
-      labelHeader = (
-        <div data-testid="days-view" aria-hidden onClick={setMode('monthes')}>
-          {monthesNames[selectedMonth.monthIndex].month}
-          {' '}
-          {selectedYear}
-        </div>
-      );
-      break;
-    }
-    case 'monthes': {
-      labelHeader = (
-        <div data-testid="monthes-view" aria-hidden onClick={setMode('years')}>
-          {selectedYear}
-        </div>
-      );
-      break;
-    }
-    case 'years': {
-      labelHeader = (
-        <div data-testid="years-view">
-          {selectedYearsInterval[0]}
-          -
-          {selectedYearsInterval[selectedYearsInterval.length - 1]}
-        </div>
-      );
-      break;
-    }
-    default: {
-      labelHeader = null;
-      break;
-    }
-  }
 
   return (
     <div data-testid="calendar-header" className={classes.wrapper}>
@@ -67,9 +23,7 @@ export const CalendarHeader = () => {
         onClick={handleArrow('left')}
         aria-hidden
       />
-      <span>
-        {labelHeader}
-      </span>
+      <LabelHeader />
       <img
         src={Next}
         alt="toRight"

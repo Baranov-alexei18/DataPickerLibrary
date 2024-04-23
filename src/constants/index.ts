@@ -1,5 +1,7 @@
 export const MONTHES_COUNT = 12;
 export const DAYS_IN_WEEK = 7;
+export const LAST_MONTH_INDEX = 11;
+export const INTERVALS_YEARS = 10;
 export const VALIDE_DATE_LENGTH = 10;
 export const TODO_STORAGE_KEY = 'ToDo';
 export const SECONDS_IN_DAY = 86400000;

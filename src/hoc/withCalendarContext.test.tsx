@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { render, screen } from '@testing-library/react';
 
-import { CalendarProps } from '@/components/Calendar/type';
+import { CalendarProps } from '@/components/Calendar/types';
 import { CalendarHeader } from '@/components/CalendarHeader';
 
 import { withCalendarContext } from './withCalendarContext';

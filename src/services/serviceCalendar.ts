@@ -1,11 +1,11 @@
 import React, { ComponentType } from 'react';
 
 import { Calendar } from '@/components/Calendar';
-import { CalendarServiceType } from '@/components/Calendar/type';
+import { CalendarServiceType } from '@/components/Calendar/types';
 import { withCalendarContext } from '@/hoc/withCalendarContext';
 import { withHolidaysConditional } from '@/hoc/withHoliday';
 import { withToDoList } from '@/hoc/withTodoList';
-import { DayViewProps } from '@/types';
+import { DayViewProps } from '@/types/calendar/calendarDay';
 
 class CalendarService {
   createCalendar(config: CalendarServiceType): React.ReactNode {

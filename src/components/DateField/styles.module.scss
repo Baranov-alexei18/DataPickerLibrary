@@ -1,4 +1,4 @@
-@import "../../assets/style/variables.scss";
+@import "../../theme/variables.scss";
 
 .datefield_wrapper {
     position: relative;
@@ -9,9 +9,9 @@
     box-sizing: border-box;
     font-family: $font-family-main;
     border: 1px solid $grey-base-color;
-    border-radius: $base-border-radius;
+    border-radius: $border-radius-base;
     background-color: $white-color;
-    padding: 16px;
+    padding: $spacing-md;
 
     img {
         cursor: pointer;
@@ -19,11 +19,11 @@
 }
 
 .date_input {
-    @include fontSize(15px, 400);
+    @include fontSize($font-size-md, $font-weight-light);
     flex: 1;
     border: none;
     outline: none;
-    padding: 1px 0 0 8px;
+    padding: $spacing $spacing $spacing $spacing-sm;
 
     ::placeholder {
         color: $grey-base-color;

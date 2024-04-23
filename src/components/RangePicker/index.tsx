@@ -3,9 +3,9 @@ import React, { useCallback, useState } from 'react';
 import CalendarService from '@/services/serviceCalendar';
 import { formatDateToString } from '@/utils/Calendar/getFormatDate';
 
-import { CalendarServiceType } from '../Calendar/type';
+import { CalendarServiceType } from '../Calendar/types';
 import { DateField } from '../DateField';
-import { DatePickerProps } from '../DatePicker/type';
+import { DatePickerProps } from '../DatePicker/types';
 
 import classes from './styles.module.scss';
 
@@ -34,11 +34,9 @@ export const RangePicker: React.FC<Partial<DatePickerProps>> = (
     if (!endRange && date > startRange) {
       setSelectedRange([startRange, date]);
       onChange!(`${formatDateToString(selectedRange[0]!)} - ${formatDateToString(date)}`);
-      closeCalendar();
     } else if (!endRange && date < startRange) {
       setSelectedRange([date, startRange]);
-      onChange!(`${formatDateToString(date!)} - ${formatDateToString(selectedRange[1]!)}`);
-      closeCalendar();
+      onChange!(`${formatDateToString(date!)} - ${formatDateToString(startRange!)}`);
     } else {
       setSelectedRange([date, null]);
     }
@@ -46,7 +44,6 @@ export const RangePicker: React.FC<Partial<DatePickerProps>> = (
 
   const handleClearRange = useCallback(() => {
     setSelectedRange([null, null]);
-    closeCalendar();
   }, []);
 
   const handleInputClick = useCallback(() => {

@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { render, waitFor } from '@testing-library/react';
 
 import { mockHolidays } from '@/constants/mocks/mock';
-import { DayViewProps } from '@/types';
+import { DayViewProps } from '@/types/calendar/calendarDay';
 
 import { withHolidaysConditional } from './withHoliday';
 

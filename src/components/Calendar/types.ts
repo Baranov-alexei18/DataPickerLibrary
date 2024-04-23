@@ -1,4 +1,4 @@
-import { holidayApiType } from '@/types';
+import { HolidayApiType } from '@/types/holiday';
 
 export type CalendarProps = {
     isFirstWeekDayMonday: boolean;
@@ -11,7 +11,7 @@ export type CalendarProps = {
     openTodo: (date: Date) => void;
     selectDate: (date: Date) => void;
     selectRange: (date: Date) => void,
-    holidays: holidayApiType[]
+    holidays: HolidayApiType[]
 };
 
 export type CalendarConfig = {

@@ -1,19 +1,18 @@
-@import "../../assets/style/variables.scss";
+@import "../../theme/variables.scss";
 
 .wrappper {
   cursor: pointer;
-  width: calc(100% + 8px);
-  max-width: calc(100% + 8px);
+  width: calc(100% + $spacing-sm);
   color: $dark-color;
   background-color: inherit;
   font-size: $font-size-md;
-  padding: 8px 0 4px 0;
-  margin: 0 -8px -4px  -4px;
-  border-bottom-left-radius: $base-border-radius;
-  border-bottom-right-radius: $base-border-radius;
+  padding: $spacing-sm $spacing $spacing-xs $spacing;
+  margin: $spacing $negative-spacing-sm $negative-spacing-xs $negative-spacing-xs;
+  border-bottom-left-radius: $border-radius-base;
+  border-bottom-right-radius: $border-radius-base;
   border: none;
   border-color: $grey-light-color;
-  border-top: 1px solid $grey-base-color;
+  border-top: 1px solid $grey-base-color; 
 
   &:hover{
     background-color: $light-color;

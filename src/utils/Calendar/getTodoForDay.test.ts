@@ -1,4 +1,4 @@
-import { TodoLocalstorageType } from '@/types';
+import { TodoLocalstorageType } from '@/types/todo';
 
 import { hasTodoForDay } from './getTodoForDay';
 

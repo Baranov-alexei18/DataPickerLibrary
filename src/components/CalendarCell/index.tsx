@@ -1,9 +1,9 @@
 import React, { FC, useContext } from 'react';
+import classNames from 'classnames/bind';
 
 import { CalendarContext } from '@/hoc/withCalendarContext';
-import { DayViewProps } from '@/types';
 import { CalendarContextType } from '@/types/calendar';
-import { CalendarDay } from '@/types/calendar/CalendarState';
+import { CalendarDay, DayViewProps } from '@/types/calendar/calendarDay';
 import {
   checkIsToday,
   isAdditionalDay,
@@ -14,11 +14,11 @@ import {
 } from '@/utils/Calendar/checkDate';
 import { hasTodoForDay } from '@/utils/Calendar/getTodoForDay';
 
+import { CalendarCellType } from './types';
+
 import classes from './styles.module.scss';
 
-type CalendarCellType = {
-    dayCell: CalendarDay;
-}
+const cx = classNames.bind(classes);
 
 export const CalendarCell: FC<CalendarCellType> = ({ dayCell }) => {
   const { dayNumber, date } = dayCell;
@@ -67,23 +67,24 @@ export const CalendarCell: FC<CalendarCellType> = ({ dayCell }) => {
     }
   };
 
+  const className = cx({
+    calendar_day: true,
+    calendar_today: checkIsToday(date),
+    additional_day: isAdditionalDay(dayCell, state.selectedMonth.monthIndex),
+    disabled_day: !isDateInRange(date, maxDate, minDate),
+    start_range: selectedRange && selectedRange[0]?.toDateString() === date.toDateString(),
+    end_range: selectedRange && selectedRange[1]?.toDateString() === date.toDateString(),
+    select_range: selectedRange && isDateInRange(date, selectedRange[1]!, selectedRange[0]!, true),
+    select_day: selectedDate && isSelectedDay(dayCell, state.selectedDay.date),
+  });
+
   return (
     <div
       data-testid="calendar-cell"
       aria-hidden
       onClick={handleDayClick(dayCell)}
       onContextMenu={handleRightMouseClick(date)}
-      className={[
-        classes.calendar_day,
-        checkIsToday(date) ? classes.calendar_today : '',
-        isAdditionalDay(dayCell, state.selectedMonth.monthIndex) ? classes.additional_day : '',
-        !isDateInRange(date, maxDate, minDate) ? classes.disabled_day : '',
-        selectedRange && selectedRange[0]?.toDateString() === date.toDateString() ? classes.start_range : '',
-        selectedRange && selectedRange[1]?.toDateString() === date.toDateString() ? classes.end_range : '',
-        selectedRange && isDateInRange(date, selectedRange[1]!, selectedRange[0]!, true)
-                && classes.selected_range,
-        selectedDate && isSelectedDay(dayCell, state.selectedDay.date) ? classes.select_day : '',
-      ].join(' ')}
+      className={className}
       style={{ backgroundColor: isViewHoliday(dayCell) ? holidayColor : '' }}
     >
       {dayNumber}

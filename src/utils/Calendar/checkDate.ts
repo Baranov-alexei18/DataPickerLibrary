@@ -1,6 +1,6 @@
 import { DAY_NUMBER_WEEK } from '@/constants';
-import { holidayApiType } from '@/types';
-import { CalendarDay } from '@/types/calendar/CalendarState';
+import { CalendarDay } from '@/types/calendar/calendarDay';
+import { HolidayApiType } from '@/types/holiday';
 
 const checkIsToday = (date: Date) => {
   const today = new Date();
@@ -20,7 +20,7 @@ const isWeekend = (day: Partial<CalendarDay>): boolean => {
   return dayOfWeek === DAY_NUMBER_WEEK.SUNDAY || dayOfWeek === DAY_NUMBER_WEEK.SATURDAY;
 };
 
-const isHoliday = (dateHoliday: Date, holidays:holidayApiType[], show:boolean): boolean => {
+const isHoliday = (dateHoliday: Date, holidays:HolidayApiType[], show:boolean): boolean => {
   if (!show) return false;
 
   const matchingHoliday = holidays.find(({ date }) => {

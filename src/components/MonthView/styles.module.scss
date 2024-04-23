@@ -1,4 +1,4 @@
-@import "../../assets/style/variables.scss";
+@import "../../theme/variables.scss";
 
 .calendar_today {
     background-color: $grey-light-color;
@@ -7,8 +7,8 @@
 .calendar_item {
     @include flex-center;
     cursor: pointer;
-    padding: 16px 0px;
-    border-radius: 8px;
+    padding: $spacing-md $spacing;
+    border-radius: $border-radius-base;
 
     &:hover {
         background-color: $primary-hover-color;
@@ -16,7 +16,7 @@
 }
 
 .calendar_month {
-    @include fontSize($font-size-sm, 600);
+    @include fontSize($font-size-sm, $font-weight-normal);
     display: grid;
     text-align: center;
     grid-template-columns: repeat(3, 1fr);

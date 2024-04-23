@@ -1,19 +1,19 @@
-@import "../../assets/style/variables.scss";
+@import "../../theme/variables.scss";
 
 .wrapper {
-    @include fontSize($font-size-sm, 400);
+    @include fontSize($font-size-sm, $font-weight-light);
     position: absolute;
     box-sizing: border-box;
-    top: calc(100% + 8px);
+    top: calc(100% + $spacing-sm);
     width: 100%;
     height: 260px;
-    padding: 10px;
+    padding: $spacing-sm;
     background-color: $light-color;
     border: 1px solid $grey-base-color;
-    border-radius: $base-border-radius;
+    border-radius: $border-radius-base;
     color: $dark-color;
     overflow-y: auto;
-    z-index: 10;
+    z-index: $z-index-medium;
 
     input[type="text"],
     button {
@@ -24,53 +24,54 @@
 
 .header {
     @include flex-space-between;
-    margin: 10px 0 ;
-    button{
-        background-color: $primary-color;
+    margin: $spacing $spacing  $spacing-md $spacing-sm;
+
+    button {
+        background-color: $grey-base-color;
         color: $white-color;
-        border-radius: $base-border-radius;
-        padding: 5px;
+        border-radius: $border-radius-base;
+        padding: $spacing-xs;
     }
 
 }
 
 .add_wrapper {
     @include flex-space-between;
-    height: 20px;
+    height: 24px;
 
     input {
-        border-top-left-radius: $base-border-radius;
-        border-bottom-left-radius: $base-border-radius;
-        height: inherit;
-        padding: 4px;
         width: 190px;
+        border-top-left-radius: $border-radius-base;
+        border-bottom-left-radius: $border-radius-base;
+        height: inherit;
+        padding: $spacing-xs;
 
     }
 
     button {
         background-color: $primary-color;
         color: $white-color;
-        padding: 6px 4px;
-        border-top-right-radius: $base-border-radius;
-        border-bottom-right-radius: $base-border-radius;
+        padding: $spacing-sm $spacing-xs;
+        border-top-right-radius: $border-radius-base;
+        border-bottom-right-radius: $border-radius-base;
     }
 }
 
 .body {
     flex-direction: column;
     list-style: none;
-    padding: 0;
+    padding: $spacing-xs;
 
     li {
         @include flex-space-between;
-        border-radius: $base-border-radius;
+        border-radius: $border-radius-base;
         border: 1px solid $grey-light-color;
-        margin-bottom: 2px;
-        padding: 4px 0;
+        margin-bottom: $spacing-xs;
+        padding: $spacing-xs $spacing;
 
         span {
             width: 70%;
-            padding: 0 0 2px 4px;
+            padding: $spacing $spacing-xs;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -79,8 +80,8 @@
         button {
             background-color: $error-color;
             color: $light-color;
-            border-radius: $base-border-radius;
-            padding: 3px;
+            border-radius: $border-radius-base;
+            padding: $spacing-xs;
         }
     }
 
@@ -89,7 +90,7 @@
     }
 
     li:nth-child(even) {
-        background-color: $grey-light-color;
         align-items: end;
+        background-color: $grey-light-color;
     }
 }
