@@ -1,8 +1,8 @@
 @import './variables.scss';
 
 body {
-    margin: 0;
-    padding: 0;
+    margin: $spacing;
+    padding: $spacing;
     font-family: $font-family-main;
-    font-weight: 300;
+    font-weight: $font-weight-light;
 }

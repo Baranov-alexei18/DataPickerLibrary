@@ -8,6 +8,7 @@ export const useSelectedDate = (initialDate: Date) => {
     createMonth({ date: new Date(selectedDay.year, selectedDay.monthIndex), locale: 'en' }),
   );
   const [selectedYear, setSelectedYear] = useState(initialDate.getFullYear());
+
   return {
     selectedDay,
     selectedMonth,

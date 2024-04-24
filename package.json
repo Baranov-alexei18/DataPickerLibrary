@@ -1,6 +1,6 @@
 {
   "name": "@alexeika/date-picker-library",
-  "version": "1.0.36",
+  "version": "1.0.38",
   "description": "Datepicker",
   "main": "dist/bundle.js",
   "author": {
