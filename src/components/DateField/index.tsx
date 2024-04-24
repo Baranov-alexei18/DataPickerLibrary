@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames/bind';
 
 import CalendarSVG from '@/assets/image/icons/Calendar.svg';
 import ClearIconSVG from '@/assets/image/icons/Clear.svg';
@@ -9,6 +10,8 @@ import { DateFieldProps } from './types';
 
 import classes from './styles.module.scss';
 
+const cx = classNames.bind(classes);
+
 export const DateField: React.FC<DateFieldProps> = ({
   value, className, onChange, onClear, onFocus,
 }) => {
@@ -17,8 +20,10 @@ export const DateField: React.FC<DateFieldProps> = ({
     onChange!(value);
   };
 
+  const classNames = cx('datefield_wrapper', className);
+
   return (
-    <div className={`${classes.datefield_wrapper} ${className}`}>
+    <div className={classNames}>
       <img
         className={classes.calendar_icon}
         src={CalendarSVG}
